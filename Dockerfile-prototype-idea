@@ -1,0 +1,112 @@
+FROM alpine AS construct_package
+
+# BUILD STEP cloning the git site repository using a build-step, the final image will not contain unwanted / needed files
+
+# Use ARG for buildtime only (pre image creation)
+# Use ENV for variables used during a live site build (post image creation)
+
+# Arguments (can be from command line):
+#   - Git repo url (https) eg. https://github.com/jeblister/kube.git ${site_git_url}
+
+# Variables:
+#   - Git repo name (using bash variable substution) eg. jeblister-kube ${site_repo_name}
+#   - Local Git working folder
+
+# Set Git global config
+ARG git_user_email="you@example.com"
+ARG git_user_name="Your Name"
+RUN set -e; \
+  \
+  apk add --no-cache git;\
+  \
+  git config --global user.email ${git_user_email}; \
+  git config --global user.name ${git_user_name};
+
+ENV local_user_dir /root/
+ENV local_workspace_dir ${local_user_dir}construct_package/
+ENV local_pull_dir ${local_workspace_dir}pull/
+ENV local_package_dir ${local_workspace_dir}package/
+ENV local_package_theme_dir=${local_package_dir}theme/
+
+# Pull site files
+ARG site_git_url="https://github.com/gohugoio/HugoBasicExample.git"
+RUN set -e; \
+  \
+  site_repo_withext="${site_git_url##*/}"; \
+  site_repo_name="${site_repo_withext%.*}"; \
+  site_pull_dir="${local_pull_dir}site/${site_repo_name}/"; \
+  mkdir -p ${site_pull_dir}; \
+  git -C ${site_pull_dir} init; \
+  git -C ${site_pull_dir} remote add origin $site_git_url; \
+  git -C ${site_pull_dir} pull origin master; \
+  ls -a ${site_pull_dir}; \
+  mkdir -p ${local_package_theme_dir}; \
+  mv -v \
+    ${site_pull_dir}config.* \
+    ${site_pull_dir}content \
+    ${site_pull_dir}layouts \
+    ${site_pull_dir}static \
+    ${local_package_dir}; \
+  ls -a ${local_package_dir}; 
+
+# Pull theme files
+ARG theme_git_url="https://github.com/jeblister/kube.git"
+RUN set -e; \
+  \
+  theme_repo_withext="${theme_git_url##*/}"; \
+  theme_repo_name="${theme_repo_withext%.*}"; \
+  theme_pull_dir="${local_pull_dir}theme/${theme_repo_name}/"; \
+  mkdir -p ${theme_pull_dir}; \
+  git -C ${theme_pull_dir} init; \
+  git -C ${theme_pull_dir} remote add origin $theme_git_url; \
+  git -C ${theme_pull_dir} pull origin master; \
+  ls -a ${theme_pull_dir}; \
+  mkdir -p ${local_package_theme_dir}; \
+  mv -v \
+    ${theme_pull_dir}theme.* \
+    ${theme_pull_dir}images \
+    ${theme_pull_dir}layouts \
+    ${theme_pull_dir}static \
+    ${local_package_theme_dir}; \
+  ls ${local_package_theme_dir};
+
+# Setup Git Distribution repo
+ARG dist_repo_url="https://github.com/static-site-exploration/explore-static-example-site-distribution.git"
+ENV local_dist_dir ${local_package_dir}dist/
+RUN set -e; \
+  \
+  mkdir -p ${local_dist_dir}; \
+  \
+  git -C ${local_dist_dir} init; \
+  git -C ${local_dist_dir} remote add origin $dist_repo_url; \
+  \
+  ls -a ${local_dist_dir};
+
+#  MAIN STEP
+
+FROM gcr.io/static-cloud-builders/hugo:latest
+
+ENV bp_workspace_dir /root/
+ENV bp_package_dir ${bp_workspace_dir}package/
+ENV bp_build_dir ${bp_workspace_dir}build/
+
+# Copy Git global config from first step to root
+COPY --from=construct_package /root/.gitconfig ${bp_workspace_dir}
+
+# Copy constructed package from first step as the package directory
+COPY --from=construct_package /root/construct_package/package/ ${bp_package_dir} 
+RUN set -e; \
+  \
+  echo "${bp_package_dir}"; \
+  ls -a ${bp_package_dir};
+  
+# Copy dist directory (including initialised git config) from first step as build the directory
+COPY --from=construct_package /root/construct_package/package/dist/ ${bp_build_dir}
+
+WORKDIR ${bp_build_dir}
+RUN set -e; \
+  \
+  echo "hello" > hello.txt; \
+  git status;
+
+WORKDIR /root/
