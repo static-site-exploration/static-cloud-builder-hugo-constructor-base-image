@@ -1,4 +1,4 @@
-#FROM busybox
+FROM busybox AS construct_package
 
 # Default rep urls
 ARG template_location=""
@@ -13,6 +13,9 @@ ARG content_location_type=""
 # Use
 
 FROM gcr.io/static-cloud-builders/hugo
-#ARGS 
 
-#CP from step=0
+COPY --from=0 /package /package
+
+# Build the package
+ENTRYPOINT ["/hugo"]
+CMD ["/package"]
