@@ -1,17 +1,21 @@
+## BUILD STEP
 FROM busybox AS construct_package
 
-# Default rep urls
-ARG template_location=""
-ARG template_location_type="" #git gs or file
+# Define default resource locations
+ARG template_resource=""
+ARG site_resource=""
+ARG content_resource=""
 
-ARG site_location=""
-ARG site_location_type=""
+# Check access to resource locations
+RUN ["verify-resource-locations.bash", "$template_resource", "$site_resource", "$content_resource"]
 
-ARG content_location=""
-ARG content_location_type=""
+# Download the hugo components
+RUN ["download-resources.bash", "$template_resource", "$site_resource", "$content_resource"]
 
-# Use
+# Check downloaded resources are hugo
+RUN ["verify-hugo-resources.bash"]
 
+## MAIN STEP
 FROM gcr.io/static-cloud-builders/hugo
 
 COPY --from=0 /package /package
