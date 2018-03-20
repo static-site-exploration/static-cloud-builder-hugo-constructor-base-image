@@ -80,9 +80,20 @@ for i in "$@"; do
   identify_resource_type i
     
   if [ "$RESOURCE_TYPE" == "git" ] then;
-
-    # test we can access
-    #ssh git@github.com
+    
+    #ssh git@github.com:blah-blah
+    
+    # test git ssh
+    test ssh ${i%$\:*};
+    
+    if [ $? == 0 ] then;
+    
+    
+    elif [ $? == 1 ] then;
+    
+    
+    fi
+    
   
   elif [ "$RESOURCE_TYPE" == "gcr" ] then;
 
