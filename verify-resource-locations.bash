@@ -56,23 +56,14 @@ identify_resource_type () {
   if [ -z "$RESOURCE_TYPE" ]
   then
   
-    echo "could not identify the resource type"
+    echo "Could not identify the resource type"
     exit 1;
   
   fi
   
 }
 
-# Function: test git
-
-
-# Function: test gcr
-
-
-# Function: test dir
-
-
-# Test all the arguments 
+# Iterate the arguments 
 for i in "$@"; do
   
   RESOURCE_TYPE=""
@@ -81,30 +72,20 @@ for i in "$@"; do
     
   if [ "$RESOURCE_TYPE" == "git" ] then;
     
-    #ssh git@github.com:blah-blah
-    
-    # test git ssh
+    # test git ssh, eg git@github.com:blah-blah
     test ssh ${i%$\:*};
+    return 0;
     
-    if [ $? == 0 ] then;
-    
-    
-    elif [ $? == 1 ] then;
-    
-    
-    fi
-    
-  
   elif [ "$RESOURCE_TYPE" == "gcr" ] then;
+   
+    # test by attempting to list contents of the bucket
+    gsutil ls i
+    return 0;
 
-    # test we can access
-    #gcloud
-
-
-  elif [ "$RESOURCE_TYPE" == "gcr" ] then;
+  elif [ "$RESOURCE_TYPE" == "dir" ] then;
   
-    # test we can access
-    test
+    # do nothing its local
+    return 0;
   
   fi
   
