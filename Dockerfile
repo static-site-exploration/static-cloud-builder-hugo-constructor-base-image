@@ -11,9 +11,6 @@ ARG site_ssh_key=""
 ARG content_resource_location=""
 ARG content_ssh_key=""
 
-# Construct an array of supplied argumnets
-#ENV 
-
 # Check access to resource locations
 RUN ["verify-resource-locations.bash", "$template_resource", "$site_resource", "$content_resource"] # ? how to handle working directory?
 
@@ -27,15 +24,19 @@ RUN ["verify-hugo-resources.bash", "/build", "$template_resource", "$site_resour
 RUN ["construct-hugo-package.bash", "/package", "$template_resource", "$site_resource", "$content_resource"]
 
 ## MAIN STEP
+# NOTE: build image will not have git or ssh installed
+
 FROM gcr.io/static-cloud-builders/hugo
 
 COPY --from=0 /package /package
 
-ADD verify-ssh.bash /verify-ssh.bash
-RUN chmod +x /verify-ssh.bash
+ADD verify-ssh.bash /build.bash
+RUN chmod +x /build.bash
 
 ENV content_ssh_key=$ssh_deploy_key
 
 # Build the package
-ENTRYPOINT ["build.bash", "${ssh_deploy_key}", "/build/location"]
-#CMD ["/package"]
+ENTRYPOINT ["build.bash"]
+
+# Using CMD for flexible args at run time, defaults are here
+CMD ["/local/content", "/local/build"]
