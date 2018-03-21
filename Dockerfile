@@ -3,8 +3,13 @@ FROM busybox AS construct_package
 
 # Define default resource locations
 ARG template_resource_location=""
+ARG template_ssh_key=""
+
 ARG site_resource_location=""
+ARG site_ssh_key=""
+
 ARG content_resource_location=""
+ARG content_ssh_key=""
 
 # Construct an array of supplied argumnets
 #ENV 
@@ -26,6 +31,11 @@ FROM gcr.io/static-cloud-builders/hugo
 
 COPY --from=0 /package /package
 
+ADD verify-ssh.bash /verify-ssh.bash
+RUN chmod +x /verify-ssh.bash
+
+ENV content_ssh_key=$ssh_deploy_key
+
 # Build the package
-ENTRYPOINT ["/hugo"]
-CMD ["/package"]
+ENTRYPOINT ["build.bash", "${ssh_deploy_key}", "/build/location"]
+#CMD ["/package"]
