@@ -23,10 +23,10 @@ ADD /verify-locations.sh .
 
 RUN set -e \
   && ls \
-  && chmod +x verify-locations.sh
+  && chmod +x ./verify-locations.sh
 
 RUN set -e \
-  && bash -x verify-locations.sh
+  && bash -x ./verify-locations.sh
 
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
