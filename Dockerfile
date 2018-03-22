@@ -13,29 +13,19 @@ ARG template_ssh_key=""
 ARG site_resource_location=""
 ARG site_ssh_key=""
 
-#SHELL ["/bin/bash", "-c"]
-
 #### NOTE: Maybe the bash scripts need to be loaded into a seperate base image 
 ## and this one just uses that with the argument values
 
-# Check access to resource locations
 WORKDIR /tmp
 ADD ["/verify-locations.bash", "."]
-
-WORKDIR /
-ADD ["/build.sh", "."]
-
-RUN ["chmod", "+x", "/build.sh"]
-
-RUN set -e \
-  && echo $(pwd) \
-  && ls \
-  && readlink -f build.sh
+ADD ["/obtain-resources.bash", "."]
+ADD ["/construct-package.bash", "."]
+ADD ["/verify-package.bash", "."]
   
   #\
   #&& chmod +x /verify-locations.bash \
   #&& /verify-locations.bash
-  
+
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
@@ -52,21 +42,30 @@ RUN set -e \
 #RUN construct-package.bash /package $template_resource $site_resource
 #RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
+# Add the hugo build script
+WORKDIR /
+ADD ["/build.sh", "."]
+
+RUN ["chmod", "+x", "/build.sh"]
+
+RUN set -e \
+  && echo $(pwd) \
+  && ls \
+  && readlink -f build.sh
+
 ## MAIN STEP
 # NOTE: build image will not have git or ssh installed
 
 FROM gcr.io/static-cloud-builders/hugo
 
+#COPY --from=0 /package /package
+
 COPY --from=0 /build.sh .
 RUN build.sh
 
-#COPY --from=0 /package /package
-
-# Build the package
-#ENTRYPOINT ["build.bash"]
+# Build the package when container is started
+#ENTRYPOINT ["build.sh"]
 
 # Using CMD for flexible args at run time, defaults are here
 #  if using google container builder, they should be set to a volume location
 #CMD ["/local/content", "/local/build"]
-
-#RUN ["ls", "/local/build"]
