@@ -19,7 +19,10 @@ ARG site_ssh_key=""
 
 # Check access to resource locations
 ADD /verify-locations.bash ./
-RUN chmod +x /verify-locations.bash && ls ./
+RUN set -e &&
+  chmod +x /verify-locations.bash && 
+  ls ./ &&
+  ./verify-locations.bash;
 
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
@@ -42,7 +45,7 @@ RUN chmod +x /verify-locations.bash && ls ./
 
 FROM gcr.io/static-cloud-builders/hugo
 
-COPY --from=0 /package /package
+#COPY --from=0 /package /package
 
 ADD build.bash /build.bash
 RUN chmod +x /build.bash
@@ -54,4 +57,4 @@ ENTRYPOINT ["build.bash"]
 #  if using google container builder, they should be set to a volume location
 CMD ["/local/content", "/local/build"]
 
-RUN ["ls", "/local/build"]
+#RUN ["ls", "/local/build"]
