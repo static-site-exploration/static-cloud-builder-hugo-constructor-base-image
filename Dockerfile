@@ -23,8 +23,8 @@ WORKDIR /tmp
 ADD /verify-locations.sh .
 RUN set -e \
   && ls \
-  && chmod +x verify-locations.bash \
-  && verify-locations.bash
+  && chmod +x /verify-locations.bash \
+  && /verify-locations.bash
   
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
