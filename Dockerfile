@@ -16,16 +16,17 @@ SHELL ["/bin/bash", "-c"]
 
 # Check access to resource locations
 RUN verify-locations.bash $template_resource $site_resource
-RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
+#RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
 # Download the hugo components
-RUN ["/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
+RUN obtain-resources.bash /pull $template_resource $site_resource
+#RUN ["bash", "-c", "/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
 
 # Construct the full hugo package by selecting only the folders we need
-RUN ["/construct-package.bash", "/package", "$template_resource", "$site_resource"]
+RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
 # Check the resources are valid hugo
-RUN ["/verify-package.bash", "/package", "$template_resource", "$site_resource"] # ? how to handle working directory?
+RUN ["bash", "-c", "/verify-package.bash", "/package", "$template_resource", "$site_resource"] # ? how to handle working directory?
 
 ## MAIN STEP
 # NOTE: build image will not have git or ssh installed
