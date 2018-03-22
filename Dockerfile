@@ -18,11 +18,13 @@ ARG site_ssh_key=""
 ## and this one just uses that with the argument values
 
 # Check access to resource locations
-ADD /verify-locations.bash ./
+ADD /verify-locations.bash .
 
 RUN set -e \
   && ls \
-  && chmod +x verify-locations.bash \
+  && chmod +x verify-locations.bash
+
+RUN set -e \
   && verify-locations.bash
 
 #RUN /verify-locations.bash 
