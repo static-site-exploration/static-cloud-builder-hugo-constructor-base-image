@@ -13,3 +13,7 @@
 #
 # Error Log: Any errors associated with this script are sent to a file called errors.log
 #
+
+set -e;
+
+echo "hello from obtain-resources.bash, using: $@";
