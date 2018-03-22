@@ -19,9 +19,10 @@ ARG site_ssh_key=""
 
 # Check access to resource locations
 ADD /verify-locations.bash ./
-RUN set -e &&
-  chmod +x /verify-locations.bash && 
-  ls ./ &&
+
+RUN set -e \
+  chmod +x /verify-locations.bash && \
+  ls ./ && \
   ./verify-locations.bash;
 
 #RUN /verify-locations.bash 
