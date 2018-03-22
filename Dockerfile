@@ -21,14 +21,16 @@ ARG site_ssh_key=""
 # Check access to resource locations
 WORKDIR /tmp
 ADD ["/verify-locations.bash", "."]
-ADD ["/build.bash", "."]
 
-RUN ["chmod", "+x", "./build.bash"]
+WORKDIR /
+ADD ["/build.sh", "."]
+
+RUN ["chmod", "+x", "/build.sh"]
 
 RUN set -e \
   && echo $(pwd) \
   && ls \
-  && readlink -f build.bash
+  && readlink -f build.sh
   
   #\
   #&& chmod +x /verify-locations.bash \
@@ -55,8 +57,8 @@ RUN set -e \
 
 FROM gcr.io/static-cloud-builders/hugo
 
-COPY --from=0 /tmp/build.bash .
-RUN build.bash
+COPY --from=0 /build.sh .
+RUN build.sh
 
 #COPY --from=0 /package /package
 
