@@ -19,9 +19,6 @@ set -e;
 
 echo "hello from build.bash, using: $@";
 
-# Build the package
+# Build the package, if no content location is supplied then create a test mardown file usng cat EOF
 
-# Push the package to resource location (git, gs, file)
-
-# Deploy
-
+# Verify the build is complete
