@@ -51,10 +51,10 @@ ADD build.bash /build.bash
 RUN chmod +x /build.bash
 
 # Build the package
-ENTRYPOINT ["build.bash"]
+#ENTRYPOINT ["build.bash"]
 
 # Using CMD for flexible args at run time, defaults are here
 #  if using google container builder, they should be set to a volume location
-CMD ["/local/content", "/local/build"]
+#CMD ["/local/content", "/local/build"]
 
 #RUN ["ls", "/local/build"]
