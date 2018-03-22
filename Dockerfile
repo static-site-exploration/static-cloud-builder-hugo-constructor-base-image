@@ -1,7 +1,7 @@
 FROM alpine
 
-RUN mkdir /util
-WORKDIR /util
+RUN mkdir /utils
+WORKDIR /utils
 ADD ["/verify-locations.bash", "."]
 RUN ["chmod", "+x", "verify-locations.bash"]
 
@@ -14,6 +14,6 @@ RUN ["chmod", "+x", "construct-package.bash"]
 ADD ["/verify-package.bash", "."]
 RUN ["chmod", "+x", "verify-package.bash"]
 
-WORKDIR /
+WORKDIR /tmp
 ADD ["/build.sh", "."]
 RUN ["chmod", "+x", "build.sh"]
