@@ -21,7 +21,8 @@ ARG site_ssh_key=""
 ADD /verify-locations.bash ./
 RUN chmod +x /verify-locations.bash
 
-RUN /verify-locations.bash $template_resource $site_resource
+RUN /verify-locations.bash 
+#$template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
 # Download the hugo components
