@@ -56,7 +56,7 @@ RUN set -e \
 FROM gcr.io/static-cloud-builders/hugo
 
 #WORKDIR ["/"]
-#COPY --from=construct_package /tmp/build.bash .
+COPY --from=construct_package /tmp/build.bash .
 #COPY --from=0 /package /package
 
 # Build the package
