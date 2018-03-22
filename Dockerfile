@@ -21,8 +21,8 @@ ARG site_ssh_key=""
 ADD /verify-locations.bash ./
 
 RUN set -e \
-  ls / && \
-  chmod +x /verify-locations.bash; 
+  && ls \
+  && chmod +x /verify-locations.bash 
   
 #  /verify-locations.bash
 
