@@ -24,7 +24,7 @@ WORKDIR ["/tmp"]
 ADD ["/verify-locations.bash", "."]
 ADD ["/build.bash", "."]
 
-#RUN ["chmod", "+x", "build.bash"]
+RUN ["chmod", "+x", "*.bash"]
 
 RUN set -e \
   && ls
