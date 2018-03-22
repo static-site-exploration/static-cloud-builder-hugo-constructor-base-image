@@ -28,7 +28,7 @@ RUN ["chmod", "+x", "./build.bash"]
 RUN set -e \
   && echo $(pwd) \
   && ls \
-  && ls /tmp/build.bash
+  && ls build.bash
   
   #\
   #&& chmod +x /verify-locations.bash \
@@ -56,7 +56,7 @@ RUN set -e \
 FROM gcr.io/static-cloud-builders/hugo
 
 #WORKDIR ["/"]
-COPY --from=0 /tmp/build.bash .
+COPY --from=0 build.bash .
 #COPY --from=0 /package /package
 
 # Build the package
