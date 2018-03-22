@@ -2,17 +2,6 @@
 #FROM busybox AS construct_package #busybox has no bash, only ash shell, and dont need any busy box packages
 FROM alpine
 
-# Busybox has git and ssh so these can be used to pull if needed
-#  if git is used then the ssh key location must be supplied and available on a volume location as this sequence will not obtain it
-#  also if using google container builder, these can be already downloaded and be supplied as a volume location
-
-# Define default resource locations
-ARG template_resource_location=""
-ARG template_ssh_key=""
-
-ARG site_resource_location=""
-ARG site_ssh_key=""
-
 #### NOTE: Maybe the bash scripts need to be loaded into a seperate base image 
 ## and this one just uses that with the argument values
 
@@ -25,6 +14,22 @@ ADD ["/verify-package.bash", "."]
   #\
   #&& chmod +x /verify-locations.bash \
   #&& /verify-locations.bash
+
+# Define default resource locations
+
+# git@github.com:static-site-exploration/explore-static-hugo-theme-example.tld.git
+# https://github.com/static-site-exploration/explore-static-hugo-theme-example.tld.git
+ARG template_resource_location=""
+
+# 
+ARG template_ssh_key=""
+
+# git@github.com:static-site-exploration/explore-static-hugo-site-example.tld.git
+# https://github.com/static-site-exploration/explore-static-hugo-site-example.tld.git
+ARG site_resource_location=""
+
+# 
+ARG site_ssh_key=""
 
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
