@@ -55,8 +55,8 @@ RUN set -e \
 
 FROM gcr.io/static-cloud-builders/hugo
 
-COPY --from=0 /tmp/build.bash $HOME/bin
-RUN echo "/$PATH is: $PATH"
+COPY --from=0 /tmp/build.bash .
+RUN build.bash
 
 #COPY --from=0 /package /package
 
