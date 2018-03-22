@@ -22,9 +22,9 @@ ARG site_ssh_key=""
 
 WORKDIR ["/tmp"]
 ADD ["/verify-locations.bash", "."]
-
 ADD ["/build.bash", "."]
-RUN ["chmod", "+x", "build.bash"]
+
+#RUN ["chmod", "+x", "build.bash"]
 
 RUN set -e \
   && ls
@@ -55,8 +55,8 @@ RUN set -e \
 
 FROM gcr.io/static-cloud-builders/hugo
 
-WORKDIR ["/"]
-COPY --from=construct_package /tmp/build.bash .
+#WORKDIR ["/"]
+#COPY --from=construct_package /tmp/build.bash .
 #COPY --from=0 /package /package
 
 # Build the package
