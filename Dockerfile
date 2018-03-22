@@ -14,9 +14,12 @@ ARG site_ssh_key=""
 
 #SHELL ["/bin/bash", "-c"]
 
+#### NOTE: Maybe the bash scripts need to be loaded into a seperate base image 
+## and this one just uses that with the argument values
+
 # Check access to resource locations
-ADD /verify-locations.bash .
-RUN verify-locations.bash $template_resource $site_resource
+ADD /verify-locations.bash ./
+RUN /verify-locations.bash $template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
 # Download the hugo components
