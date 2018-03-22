@@ -5,4 +5,4 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/${PROJECT_ID}/hugo-site-constructor', '.']
 
-images: ['gcr.io/${PROJECT_ID}/hugo-site-constructor-empty-site']
+images: ['gcr.io/${PROJECT_ID}/hugo-site-constructor']
