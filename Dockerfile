@@ -15,19 +15,20 @@ ARG site_ssh_key=""
 #SHELL ["/bin/bash", "-c"]
 
 # Check access to resource locations
+ADD verify-location.bash /verify-location.bash
 RUN verify-locations.bash $template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
 # Download the hugo components
-RUN obtain-resources.bash /pull $template_resource $site_resource
+#RUN obtain-resources.bash /pull $template_resource $site_resource
 #RUN ["bash", "-c", "/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
 
 # Construct the full hugo package by selecting only the folders we need
-RUN construct-package.bash /package $template_resource $site_resource
+#RUN construct-package.bash /package $template_resource $site_resource
 #RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
 # Check the resources are valid hugo
-RUN construct-package.bash /package $template_resource $site_resource
+#RUN construct-package.bash /package $template_resource $site_resource
 #RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
 ## MAIN STEP
