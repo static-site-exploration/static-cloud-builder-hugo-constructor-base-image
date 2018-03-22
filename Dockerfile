@@ -52,8 +52,9 @@ FROM gcr.io/static-cloud-builders/hugo
 
 #COPY --from=0 /package /package
 
-ADD /build.bash ./
-RUN chmod +x /build.bash
+WORKDIR ["/"]
+ADD ["/build.bash", "."]
+RUN ["chmod", "+x", "build.bash"]
 
 # Build the package
 #ENTRYPOINT ["build.bash"]
