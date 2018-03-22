@@ -19,14 +19,14 @@ ARG site_ssh_key=""
 
 # Check access to resource locations
 WORKDIR /tmp
-ADD /verify-locations.bash .
+ADD /verify-locations.sh .
 
 RUN set -e \
   && ls \
-  && chmod +x verify-locations.bash
+  && chmod +x verify-locations.sh
 
 RUN set -e \
-  && bash -x verify-locations.bash
+  && bash -x verify-locations.sh
 
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
