@@ -18,6 +18,8 @@
 set -e;
 echo "hello from build.sh, using: $@";
 
+hugo --help;
+
 # Build the package, if no content location is supplied then create a test mardown file usng cat EOF
 
 # Verify the build is complete
