@@ -13,7 +13,7 @@ ARG site_resource_location=""
 ARG site_ssh_key=""
 
 # Check access to resource locations
-RUN ["/verify-resource-locations.bash", "$template_resource", "$site_resource"] # ? how to handle working directory?
+RUN ["/verify-locations.bash", "$template_resource", "$site_resource"] # ? how to handle working directory?
 
 # Download the hugo components
 RUN ["/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"] # ? how to handle working directory?
