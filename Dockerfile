@@ -19,6 +19,8 @@ ARG site_ssh_key=""
 
 # Check access to resource locations
 ADD /verify-locations.bash ./
+RUN chmod +x /verify-locations.bash
+
 RUN /verify-locations.bash $template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
