@@ -19,7 +19,6 @@ ARG site_ssh_key=""
 ## and this one just uses that with the argument values
 
 # Check access to resource locations
-
 WORKDIR ["/tmp"]
 ADD ["/verify-locations.bash", "."]
 ADD ["/build.bash", "."]
@@ -27,8 +26,8 @@ ADD ["/build.bash", "."]
 RUN ["chmod", "+x", "./build.bash"]
 
 RUN set -e \
+  && echo $(pwd) \
   && ls
-  
   
   #\
   #&& chmod +x /verify-locations.bash \
