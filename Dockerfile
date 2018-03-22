@@ -27,7 +27,7 @@ RUN ["chmod", "+x", "./build.bash"]
 
 RUN set -e \
   && echo $(pwd) \
-  && ls
+  && ls \
   && ls /tmp/build.bash
   
   #\
