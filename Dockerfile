@@ -23,10 +23,12 @@ RUN obtain-resources.bash /pull $template_resource $site_resource
 #RUN ["bash", "-c", "/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
 
 # Construct the full hugo package by selecting only the folders we need
-RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
+RUN construct-package.bash /package $template_resource $site_resource
+#RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
 # Check the resources are valid hugo
-RUN ["bash", "-c", "/verify-package.bash", "/package", "$template_resource", "$site_resource"] # ? how to handle working directory?
+RUN construct-package.bash /package $template_resource $site_resource
+#RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
 
 ## MAIN STEP
 # NOTE: build image will not have git or ssh installed
