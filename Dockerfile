@@ -1,5 +1,6 @@
 ## BUILD STEP
-FROM busybox AS construct_package
+#FROM busybox AS construct_package #busybox has no bash, only ash shell, and dont need any busy box packages
+FROM alpine AS construct_package
 
 # Busybox has git and ssh so these can be used to pull if needed
 #  if git is used then the ssh key location must be supplied and available on a volume location as this sequence will not obtain it
@@ -20,14 +21,11 @@ ARG site_ssh_key=""
 # Check access to resource locations
 WORKDIR /tmp
 ADD /verify-locations.sh .
-
 RUN set -e \
   && ls \
-  && chmod +x ./verify-locations.sh
-
-RUN set -e \
-  && bash -x ./verify-locations.sh
-
+  && chmod +x verify-locations.bash \
+  && verify-locations.bash
+  
 #RUN /verify-locations.bash 
 #$template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
