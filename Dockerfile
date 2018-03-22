@@ -19,12 +19,17 @@ ARG site_ssh_key=""
 ## and this one just uses that with the argument values
 
 # Check access to resource locations
+
 WORKDIR ["/tmp"]
 ADD ["/verify-locations.bash", "."]
 
 RUN set -e \
   && ls
-  
+
+WORKDIR ["/"]
+ADD ["/build.bash", "."]
+RUN ["chmod", "+x", "build.bash"]
+
   #\
   #&& chmod +x /verify-locations.bash \
   #&& /verify-locations.bash
@@ -50,11 +55,9 @@ RUN set -e \
 
 FROM gcr.io/static-cloud-builders/hugo
 
-#COPY --from=0 /package /package
-
 WORKDIR ["/"]
-ADD ["/build.bash", "."]
-RUN ["chmod", "+x", "build.bash"]
+ADD --from=0 /build.bash .
+#COPY --from=0 /package /package
 
 # Build the package
 #ENTRYPOINT ["build.bash"]
