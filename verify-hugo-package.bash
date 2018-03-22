@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script Name: verify-hugo-resources.bash
+# Script Name: verify-hugo-package.bash
 #
 # Author: Mark Dorrill
 # Date : 20.03.2018
