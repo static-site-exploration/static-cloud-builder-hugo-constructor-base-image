@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script Name: download-resources.bash
+# Script Name: obtain-resources.bash
 #
 # Author: Mark Dorrill
 # Date : 20.03.2018
