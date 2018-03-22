@@ -15,7 +15,7 @@ ARG site_ssh_key=""
 #SHELL ["/bin/bash", "-c"]
 
 # Check access to resource locations
-ADD verify-location.bash /verify-location.bash
+ADD /verify-location.bash /verify-location.bash
 RUN verify-locations.bash $template_resource $site_resource
 #RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
