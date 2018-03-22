@@ -12,8 +12,11 @@ ARG template_ssh_key=""
 ARG site_resource_location=""
 ARG site_ssh_key=""
 
+SHELL ["/bin/bash", "-c"]
+
 # Check access to resource locations
-RUN ["/verify-locations.bash", "$template_resource", "$site_resource"]
+RUN verify-locations.bash $template_resource $site_resource
+RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
 
 # Download the hugo components
 RUN ["/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
