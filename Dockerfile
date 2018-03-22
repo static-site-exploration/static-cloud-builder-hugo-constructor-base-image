@@ -57,6 +57,8 @@ FROM gcr.io/static-cloud-builders/hugo
 
 #WORKDIR ["/"]
 COPY --from=0 /tmp/build.bash $HOME/bin
+RUN ["ls", "$HOME/bin"]
+
 #COPY --from=0 /package /package
 
 # Build the package
