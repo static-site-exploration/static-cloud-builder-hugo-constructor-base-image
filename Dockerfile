@@ -1,6 +1,6 @@
 ## BUILD STEP
 #FROM busybox AS construct_package #busybox has no bash, only ash shell, and dont need any busy box packages
-FROM alpine AS construct_package
+FROM alpine
 
 # Busybox has git and ssh so these can be used to pull if needed
 #  if git is used then the ssh key location must be supplied and available on a volume location as this sequence will not obtain it
@@ -28,6 +28,7 @@ RUN ["chmod", "+x", "./build.bash"]
 RUN set -e \
   && echo $(pwd) \
   && ls
+  && ls /tmp/build.bash
   
   #\
   #&& chmod +x /verify-locations.bash \
@@ -55,7 +56,7 @@ RUN set -e \
 FROM gcr.io/static-cloud-builders/hugo
 
 #WORKDIR ["/"]
-COPY --from=construct_package /tmp/build.bash .
+COPY --from=0 /tmp/build.bash .
 #COPY --from=0 /package /package
 
 # Build the package
