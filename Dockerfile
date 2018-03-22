@@ -56,7 +56,7 @@ RUN ["chmod", "+x", "build.bash"]
 FROM gcr.io/static-cloud-builders/hugo
 
 WORKDIR ["/"]
-ADD --from=0 /build.bash .
+COPY ["--from=0", "/build.bash", "."]
 #COPY --from=0 /package /package
 
 # Build the package
