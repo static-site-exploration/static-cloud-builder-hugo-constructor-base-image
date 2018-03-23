@@ -2,7 +2,33 @@
 # $ gcloud container builds submit . --config=cloudbuild.yaml
 
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/${PROJECT_ID}/hugo-constructor-base', '.']
 
-images: ['gcr.io/${PROJECT_ID}/hugo-constructor-base']
+# Pull the site
+
+  # Use variable for git repo
+  # ${_SITE_GIT_REPO_HTTP_LOCATION}
+
+# Pull the theme
+
+  # Use variable for git repo
+  # ${_THEME_GIT_REPO_HTTP_LOCATION}
+
+# Filter the folders
+
+  # ? maybe need a TOML or JSON file with config, held in GCS or other online storage, 
+  # set config through variable
+  
+  # ${_SITE_FOLDER_CONFG}
+  # Can build a a bash script to create this
+  
+# Build the image
+
+  # Dockefile copies site package from /workspace/package
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}', '.']
+  
+# Push the image
+
+  # Use variable for image name
+images: ['gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}']
