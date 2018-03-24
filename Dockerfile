@@ -5,9 +5,7 @@ FROM alpine
 
 ARG builder_package_dir=""
 #ARG builder_package_dir="/package"
+ARG container_package_dir="./package"
 
-ARG builder_package_dir="./package"
-ARG container_package_dir="/build"
-
-COPY ["${container_package_dir}", "${container_package_dir}"]
+COPY ["${builder_package_dir}", "${container_package_dir}"]
 RUN ["ls", "${container_package_dir}"]
