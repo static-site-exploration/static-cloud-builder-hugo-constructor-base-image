@@ -115,6 +115,6 @@ steps:
   - 'theme_config_file=${_CONFIG_FILE_THEME}'
   #
   - '--build-arg'
-  - 'content_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}/${_DIR_NAME_CONTENT}
+  - 'content_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}/${_DIR_NAME_CONTENT}'
   #
   - '.'
