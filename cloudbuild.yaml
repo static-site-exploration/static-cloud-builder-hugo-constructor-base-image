@@ -8,8 +8,7 @@
 substitutions:
       
     # Base build folders
-    _BUILD_BASE_DIR_VOLUME: '/workspace'
-    _BUILD_BASE_DIR_PACKAGE: '$${_BUILD_BASE_DIR_VOLUME}/package'
+    _BUILD_BASE_DIR_PACKAGE: '/workspace/package'
 
     # The directory, relavent to either BUILD or IMAGE base folders
     # This structure is copied to the IMAGE later on and also used relative to the BUILD
@@ -29,9 +28,7 @@ steps:
   args:
   - '-c'
   - |
-    mkdir -p ${_BUILD_BASE_DIR_VOLUME}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}
-    \
     \
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_SITE}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}
