@@ -5,4 +5,4 @@ FROM gcr.io/static-cloud-builders/hugo
 
 COPY ["/package", "./package"]
 #RUN ["ls", "./package"]
-RUN ["test", "./package"]
+#RUN ["test", "./package"]
