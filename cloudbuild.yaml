@@ -47,7 +47,7 @@ steps:
   - 'build'
   - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}'
   - '--file'
-  - '/Dockerfile'
+  - 'Dockerfile'
   - '--build-arg'
   - 'package_source=/workspace/package'
   - '--build-arg'
