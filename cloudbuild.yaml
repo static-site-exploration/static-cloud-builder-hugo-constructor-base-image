@@ -22,9 +22,9 @@ steps:
 
 - name: 'gcr.io/cloud-builders/git'
   args:
-    - 'clone', 
-    - '${_SITE_GIT_REPO_HTTP_LOCATION}'
-    - '/workspace/package/site'
+  - 'clone'
+  - '${_SITE_GIT_REPO_HTTP_LOCATION}'
+  - '/workspace/package/site'
 
 # Pull the theme
 
@@ -33,9 +33,9 @@ steps:
 
 - name: 'gcr.io/cloud-builders/git'
   args:
-    - 'clone', 
-    - '${_THEME_GIT_REPO_HTTP_LOCATION}'
-    - '/workspace/package/theme'
+  - 'clone'
+  - '${_THEME_GIT_REPO_HTTP_LOCATION}'
+  - '/workspace/package/theme'
     
 # Build the image
 
@@ -44,23 +44,21 @@ steps:
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
-    - 'build', 
-    - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}'', 
-    - '--file',
-    - '/Dockerfile',
-    - '--build-arg',
-    - 'package_source=/workspace/package',   
-    - '--build-arg',
-    - 'config_file=$_CONFIG_FILE_NAME',
-    - '--build-arg',
-    - 'content_dir=$_CONTENT_DIR_NAME',
-    - '--build-arg',
-    - 'themes_dir=$_THEMES_DIR_NAME',
-    - '--build-arg',
-    - 'destination_dir=$_CONTENT_DIR_NAME',    
-    - '.'
+  - 'build'
+  - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}'
+  - '--file'
+  - '/Dockerfile'
+  - '--build-arg'
+  - 'package_source=/workspace/package'
+  - '--build-arg'
+  - 'config_file=$_CONFIG_FILE_NAME'
+  - '--build-arg'
+  - 'content_dir=$_CONTENT_DIR_NAME'
+  - '--build-arg'
+  - 'themes_dir=$_THEMES_DIR_NAME'
+  - '--build-arg'
+  - 'destination_dir=$_CONTENT_DIR_NAME'  
+  - '.'
     
 # Push the image
-
-  # Use variable for image name
 images: ['gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}']
