@@ -44,19 +44,27 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'clone'
-  - '${_REPO_URL_HTTPS_SITE}'
-  - '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_SITE}'
+  - ${_REPO_URL_HTTPS_SITE}
+  - ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_SITE}
 
 # Clone the theme repo to the workspace site folder
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'clone'
-  - '${_REPO_URL_HTTPS_THEME}'
-  - '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}'
+  - ${_REPO_URL_HTTPS_THEME}
+  - ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}
 
 # Clone the test content repo 
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'clone'
-  - '${_REPO_URL_HTTPS_CONTENT}'
-  - '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
+  - ${_REPO_URL_HTTPS_CONTENT}
+  - ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}
+
+- name: 'gcr.io/cloud-builders/git'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo 'POST GIT CLONE: Listing all workspace directories:'
+    find . -depth ! -path "*/\.*"
