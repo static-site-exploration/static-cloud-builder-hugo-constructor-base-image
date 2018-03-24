@@ -9,11 +9,11 @@ ARG builder_package_dir=""
 RUN mkdir -p ${container_package_dir}
 RUN mkdir -p ${container_dist_dir}
 
-RUN ls
+RUN ls /localspace
 
 WORKDIR ${builder_package_dir}
 COPY . ${container_package_dir}
 
-WORKDIR /localspace
+WORKDIR /
 
-RUN ls
+RUN ls /localspace/package
