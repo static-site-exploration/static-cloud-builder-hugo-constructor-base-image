@@ -30,8 +30,12 @@ steps:
   args:
   - '-c'
   - |
-    mkdir -p $_BUILD_BASE_DIR_VOLUME
-    mkdir -p $_BUILD_BASE_DIR_PACKAGE
-    #mkdir -p $_BUILD_BASE_DIR_REPO_SITE
-    #mkdir -p $_BUILD_BASE_DIR_REPO_THEME
-    #mkdir -p $_BUILD_BASE_DIR_REPO_CONTENT
+    mkdir -p ${_BUILD_BASE_DIR_VOLUME}
+    mkdir -p ${_BUILD_BASE_DIR_PACKAGE}
+    \
+    echo "Listing: ${_BUILD_BASE_DIR_VOLUME}" && ls -a ${_BUILD_BASE_DIR_VOLUME}
+    echo "listing: ${_BUILD_BASE_DIR_PACKAGE}" && ls -a ${_BUILD_BASE_DIR_PACKAGE}
+    #\
+    #mkdir -p ${_BUILD_BASE_DIR_REPO_SITE}
+    #mkdir -p ${_BUILD_BASE_DIR_REPO_THEME}
+    #mkdir -p ${_BUILD_BASE_DIR_REPO_CONTENT}
