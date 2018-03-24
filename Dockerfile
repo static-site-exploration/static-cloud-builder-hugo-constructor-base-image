@@ -4,5 +4,5 @@ FROM gcr.io/static-cloud-builders/hugo
 # builder /workspace == container /
 
 COPY ["/package", "./package"]
-#RUN ["ls", "./package"]
-#RUN ["test", "./package"]
+RUN ["ls", "./package"]
+RUN ["test", "./package"]
