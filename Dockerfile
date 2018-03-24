@@ -1,7 +1,8 @@
 #FROM gcr.io/static-cloud-builders/hugo
 FROM alpine
 
-# builder /workspace == container /
+ENV HUGO_VERSION=0.36.1
+RUN wget -O- https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar zx /bin
 
-COPY ["/package", "./package"]
-RUN ["ls", "./package"]
+RUN ["hugo", "--help"]
+
