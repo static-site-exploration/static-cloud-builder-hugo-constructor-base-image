@@ -4,7 +4,7 @@ FROM gcr.io/static-cloud-builders/hugo
 ENV container_package_dir="/package"
 ENV container_dist_dir="/dist"
 
-ARG builder_package_dir="" # /workspace/package/
+ARG builder_package_dir=""
 
 WORKDIR ${builder_package_dir}
 COPY . ${container_package_dir}
