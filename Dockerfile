@@ -3,3 +3,4 @@ FROM alpine
 
 COPY ["/build.sh", "."]
 RUN ["ls", "."]
+RUN ["ls", "/"]
