@@ -10,3 +10,5 @@ RUN ls
 
 WORKDIR ${builder_package_dir}
 COPY . ${container_package_dir}
+
+RUN ls
