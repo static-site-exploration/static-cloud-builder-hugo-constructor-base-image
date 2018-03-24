@@ -29,11 +29,10 @@ steps:
     mkdir -p ${_BUILD_BASE_DIR_VOLUME}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}
     \
-    #echo ${_BUILD_BASE_DIR_VOLUME}
     \
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_SITE}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}
     \
-    #echo ${_BUILD_BASE_DIR_PACKAGE}
+    echo 'Created the following directories'
     find ${_BUILD_BASE_DIR_PACKAGE} -type d
