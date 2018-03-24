@@ -1,0 +1,43 @@
+FROM gcr.io/static-cloud-builders/hugo-constructor-base
+
+# Define default resource locations
+
+# git@github.com:static-site-exploration/explore-static-hugo-theme-example.tld.git
+# https://github.com/static-site-exploration/explore-static-hugo-theme-example.tld.git
+ARG template_resource_location=""
+
+# 
+ARG template_ssh_key=""
+
+# git@github.com:static-site-exploration/explore-static-hugo-site-example.tld.git
+# https://github.com/static-site-exploration/explore-static-hugo-site-example.tld.git
+ARG site_resource_location=""
+
+# 
+ARG site_ssh_key=""
+
+#RUN /verify-locations.bash 
+#$template_resource $site_resource
+#RUN ["verify-locations.bash", "$template_resource", "$site_resource"]
+
+# Download the hugo components
+#RUN obtain-resources.bash /pull $template_resource $site_resource
+#RUN ["bash", "-c", "/obtain-resources.bash", "/pull", "$template_resource", "$site_resource"
+
+# Construct the full hugo package by selecting only the folders we need
+#RUN construct-package.bash /package $template_resource $site_resource
+#RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
+
+# Check the resources are valid hugo
+#RUN construct-package.bash /package $template_resource $site_resource
+#RUN ["bash", "-c", "/construct-package.bash", "/package", "$template_resource", "$site_resource"]
+
+## MAIN STEP
+# NOTE: build image will not have git or ssh installed
+
+FROM gcr.io/static-cloud-builders/hugo
+
+#COPY --from=0 /package /package
+
+COPY --from=0 /tmp/build.sh .
+RUN build.sh
