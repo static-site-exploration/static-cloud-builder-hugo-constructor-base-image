@@ -107,5 +107,5 @@ steps:
   - 'content_dir=${_PACKAGE_BASE_DIR}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
   #
   - '--build-arg'
-  - 'theme_dir_name=${_DIR_NAME_THEME}' # without full path
+  - 'themes_dir_name=${_DIR_NAME_THEME}' # without full path
   - '.'
