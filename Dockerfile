@@ -1,5 +1,7 @@
 #FROM gcr.io/static-cloud-builders/hugo
 FROM alpine
 
-COPY ["/package", "."]
-RUN ["ls", "."]
+# builder /workspace == container /
+
+COPY ["/package", "./package"]
+RUN ["ls", "./package"]
