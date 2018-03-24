@@ -11,9 +11,27 @@ substitutions:
     
     # Use a standard repo for testing
     _REPO_URL_HTTPS_TEST_CONTENT: https://github.com/mobybit/hugo-natrium-theme.git # default
-    
+      
+    # Base build folders
+    _BUILD_BASE_DIR_VOLUME: '/workspace'
+    _BUILD_BASE_DIR_PACKAGE: '$${_BUILD_VOLUME_DIR}/package'
+
     # The directory, relavent to either BUILD or IMAGE base folders
     # This structure is copied to the IMAGE later on and also used relative to the BUILD
     _PACKAGE_BASE_DIR_REPO_SITE: 'site/repo'
     _PACKAGE_BASE_DIR_REPO_THEME: 'theme/repo'
     _PACKAGE_BASE_DIR_REPO_CONTENT: 'content/repo'
+
+steps:
+
+# Setup workspace directories
+- name: 'gcr.io/cloud-builders/git'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    mkdir -p $_BUILD_BASE_DIR_VOLUME
+    mkdir -p $_BUILD_BASE_DIR_PACKAGE
+    mkdir -p $_BUILD_BASE_DIR_REPO_SITE
+    mkdir -p $_BUILD_BASE_DIR_REPO_THEME
+    mkdir -p $_BUILD_BASE_DIR_REPO_CONTENT
