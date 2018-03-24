@@ -19,7 +19,11 @@ substitutions:
     # For TESTING PURPOSES ONLY! (not the final build)
     _REPO_URL_HTTPS_CONTENT: 'https://github.com/mobybit/hugo-natrium-theme.git'
     
-
+    _PACKAGE_BASE_DIR: '/package'
+    
+    # Pathless, Hugo defaults
+    _CONFIG_FILE_SITE: 'config.toml'
+    _CONFIG_FILE_THEME: 'theme.toml'    
     
     
 steps:
@@ -85,6 +89,21 @@ steps:
   - '--file'
   - 'Dockerfile'
   #
+  # Arguments used by image at BUILD TIME
   #
+  - '--build-arg'
+  - 'package_source=${_BUILD_BASE_DIR_PACKAGE}'
+  #
+  #
+  # Arguments used by the hugo command line inside the image at RUN TIME
+  #
+  - '--build-arg'
+  - 'site_config_file=${_CONFIG_FILE_SITE}'
+  #
+  - '--build-arg'
+  - 'theme_config_file=${_CONFIG_FILE_THEME}'
+  #
+  - '--build-arg'
+  - 'content_dir=${_PACKAGE_BASE_DIR}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
   #
   - '.'
