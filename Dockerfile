@@ -27,7 +27,7 @@ RUN hugo --help
 
 RUN hugo \
   --enableGitInfo \
-  --config ${container_package_dir}/${config_file} \
+  --config ${container_package_dir}/${site_dir}/${config_file} \
   --contentDir ${container_package_dir}/${content_dir} \
   --themesDir ${container_package_dir}/${themes_dir} \
   --theme ${container_package_dir}/${themes_dir}/${theme_dir_name} \
