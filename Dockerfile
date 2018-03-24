@@ -23,6 +23,8 @@ ARG theme_dir_name
 ARG container_build_dir="/build"
 #RUN mkdir ${container_build_dir}
 
+RUN hugo --help
+
 ENTRYPOINT hugo \
   --enableGitInfo \
   --config ${container_package_dir}/${config_file} \
