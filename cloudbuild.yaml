@@ -25,7 +25,9 @@ substitutions:
     _CONFIG_FILE_SITE: 'config.toml'
     _CONFIG_FILE_THEME: 'theme.toml'    
     
+    _DIR_NAME_SITE: '/.'
     _DIR_NAME_THEME: '/.'
+    _DIR_NAME_CONTENT: '/content'
     
 steps:
 
@@ -98,14 +100,21 @@ steps:
   # Arguments used by the hugo command line inside the image at RUN TIME
   #
   - '--build-arg'
+  - 'site_dir=${_PACKAGE_BASE_DIR_REPO_SITE}/${_DIR_NAME_SITE}'
+  #
+  - '--build-arg'
   - 'site_config_file=${_CONFIG_FILE_SITE}'
+  #
+  - '--build-arg'
+  - 'themes_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}' # without full path
+  #
+  - '--build-arg'
+  - 'theme_dir_name=${_DIR_NAME_THEME}'
   #
   - '--build-arg'
   - 'theme_config_file=${_CONFIG_FILE_THEME}'
   #
   - '--build-arg'
-  - 'content_dir=${_PACKAGE_BASE_DIR}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
+  - 'content_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}/${_DIR_NAME_CONTENT}
   #
-  - '--build-arg'
-  - 'themes_dir_name=${_DIR_NAME_THEME}' # without full path
   - '.'
