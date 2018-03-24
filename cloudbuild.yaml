@@ -98,12 +98,8 @@ steps:
   # Arguments used by the hugo command line inside the image at RUN TIME
   #
   - '--build-arg'
-  - 'site_config_file=${_CONFIG_FILE_SITE}'
+  - 'builder_package_dir=${_CONFIG_FILE_SITE}'
   #
   - '--build-arg'
   - 'theme_config_file=${_CONFIG_FILE_THEME}'
-  #
-  - '--build-arg'
-  - 'content_dir=${_PACKAGE_BASE_DIR}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
-  #
   - '.'
