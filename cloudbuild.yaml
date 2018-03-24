@@ -9,7 +9,7 @@ substitutions:
       
     # Base build folders
     _BUILD_BASE_DIR_VOLUME: '/workspace'
-    _BUILD_BASE_DIR_PACKAGE: '${_BUILD_BASE_DIR_VOLUME}/package'
+    _BUILD_BASE_DIR_PACKAGE: '$${_BUILD_BASE_DIR_VOLUME}/package'
 
     # The directory, relavent to either BUILD or IMAGE base folders
     # This structure is copied to the IMAGE later on and also used relative to the BUILD
