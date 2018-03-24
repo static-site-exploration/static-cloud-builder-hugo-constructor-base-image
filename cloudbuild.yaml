@@ -1,9 +1,9 @@
 # In this directory, run the following command to build this builder.
 # $ gcloud container builds submit . --config=cloudbuild.yaml
 
-options:
+#options:
 
-    substitution_option: 'ALLOW_LOOSE'
+#    substitution_option: 'ALLOW_LOOSE'
 
 substitutions:
     
@@ -22,6 +22,11 @@ substitutions:
     _PACKAGE_BASE_DIR_REPO_THEME: 'theme/repo'
     _PACKAGE_BASE_DIR_REPO_CONTENT: 'content/repo'
 
+    # The full build path for each repo folder
+    _BUILD_BASE_DIR_REPO_SITE: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_SITE}'
+    _BUILD_BASE_DIR_REPO_THEME: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_THEME}'
+    _BUILD_BASE_DIR_REPO_CONTENT: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_CONTENT}'
+ 
 steps:
 
 # Setup workspace directories
@@ -33,9 +38,10 @@ steps:
     mkdir -p ${_BUILD_BASE_DIR_VOLUME}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}
     \
-    echo "Listing: ${_BUILD_BASE_DIR_VOLUME}" && ls -a ${_BUILD_BASE_DIR_VOLUME}
-    echo "listing: ${_BUILD_BASE_DIR_PACKAGE}" && ls -a ${_BUILD_BASE_DIR_PACKAGE}
+    ls -d ${_BUILD_BASE_DIR_VOLUME}
     #\
-    #mkdir -p ${_BUILD_BASE_DIR_REPO_SITE}
-    #mkdir -p ${_BUILD_BASE_DIR_REPO_THEME}
-    #mkdir -p ${_BUILD_BASE_DIR_REPO_CONTENT}
+    mkdir -p ${_BUILD_BASE_DIR_REPO_SITE}
+    mkdir -p ${_BUILD_BASE_DIR_REPO_THEME}
+    mkdir -p ${_BUILD_BASE_DIR_REPO_CONTENT}
+    \
+    ls -d ${_BUILD_BASE_DIR_PACKAGE}
