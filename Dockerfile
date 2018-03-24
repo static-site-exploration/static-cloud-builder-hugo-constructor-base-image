@@ -1,15 +1,19 @@
 FROM gcr.io/static-cloud-builders/hugo
 
-ARG site_source="/workspace/package" # default
-ADD ["${package_source}", "/package"] # folder created in hugo base image
+# Default argument set:
+ARG package_source="/workspace/package"
 
-ENV base_dir="/build" # default
-ARG config_file="$base_dir/config.toml" # default
-ARG content_dir="$base_dir/content" # default
-ARG themes_dir="$base_dir/themes" # default
+# Special folder was created within hugo base image
+ADD ["${package_source}", "/package"]
+
+ENV base_dir="/build" 
+ARG config_file="$base_dir/config.toml"
+ARG content_dir="$base_dir/content"
+ARG themes_dir="$base_dir/themes"
 ARG theme_name=""
 
-ARG destination_dir="/build" # folder created in hugo base image
+# special folder was created within hugo base image
+ARG destination_dir="/build" 
 
 ENTRYPOINT ["hugo", "--enableGitInfo", "--config", "${config_file}", "--contentDir", "${content_dir}", "--themesDir", "${themes_dir}, "--destination"]
 
