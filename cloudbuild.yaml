@@ -36,4 +36,4 @@ steps:
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}
     \
     #echo ${_BUILD_BASE_DIR_PACKAGE}
-    find ${_BUILD_BASE_DIR_VOLUME} -type d
+    find ${_BUILD_BASE_DIR_PACKAGE} -type d
