@@ -45,7 +45,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'build', 
-    - '--tag=gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}', 
+    - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}'', 
     - '--file',
     - '/Dockerfile',
     - '--build-arg',
@@ -63,4 +63,4 @@ steps:
 # Push the image
 
   # Use variable for image name
-images: ['gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}']
+images: ['gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_SITE_DOMAIN}']
