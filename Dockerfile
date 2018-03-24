@@ -21,7 +21,7 @@ ARG content_dir
 ARG theme_dir_name
 
 ARG container_build_dir="/build"
-RUN mkdir ${container_build_dir}
+#RUN mkdir ${container_build_dir}
 
 ENTRYPOINT hugo \
   --enableGitInfo \
