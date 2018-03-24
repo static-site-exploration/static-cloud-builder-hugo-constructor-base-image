@@ -14,7 +14,7 @@ substitutions:
       
     # Base build folders
     _BUILD_BASE_DIR_VOLUME: '/workspace'
-    _BUILD_BASE_DIR_PACKAGE: '$${_BUILD_VOLUME_DIR}/package'
+    _BUILD_BASE_DIR_PACKAGE: '${_BUILD_VOLUME_DIR}/package'
 
     # The directory, relavent to either BUILD or IMAGE base folders
     # This structure is copied to the IMAGE later on and also used relative to the BUILD
@@ -23,9 +23,9 @@ substitutions:
     _PACKAGE_BASE_DIR_REPO_CONTENT: 'content/repo'
 
     # The full build path for each repo folder
-    _BUILD_BASE_DIR_REPO_SITE: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_SITE}'
-    _BUILD_BASE_DIR_REPO_THEME: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_THEME}'
-    _BUILD_BASE_DIR_REPO_CONTENT: '$${_BUILD_BASE_DIR_PACKAGE}/$${_PACKAGE_BASE_DIR_REPO_CONTENT}'
+    _BUILD_BASE_DIR_REPO_SITE: '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_SITE}'
+    _BUILD_BASE_DIR_REPO_THEME: '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}'
+    _BUILD_BASE_DIR_REPO_CONTENT: '${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}'
  
 steps:
 
