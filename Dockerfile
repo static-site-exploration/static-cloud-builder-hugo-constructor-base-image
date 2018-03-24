@@ -1,6 +1,5 @@
 #FROM gcr.io/static-cloud-builders/hugo
 FROM alpine
 
-COPY ["/build.sh", "."]
+COPY ["/package", "."]
 RUN ["ls", "."]
-RUN ["ls", "/"]
