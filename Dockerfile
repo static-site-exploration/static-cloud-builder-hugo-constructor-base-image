@@ -6,4 +6,4 @@ ENV build_dir="/build"
 
 ARG package_source=""
 #COPY ${package_source} ${package_dir}
-COPY /workspace/package/* ${package_dir}
+RUN ls -d .
