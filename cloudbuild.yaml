@@ -25,9 +25,9 @@ substitutions:
     _CONFIG_FILE_SITE: 'config.toml'
     _CONFIG_FILE_THEME: 'theme.toml'    
     
-    _DIR_NAME_SITE: '/.'
-    _DIR_NAME_THEME: '/.'
-    _DIR_NAME_CONTENT: '/content'
+    _DIR_NAME_SITE: '.'
+    _DIR_NAME_THEME: '.'
+    _DIR_NAME_CONTENT: 'content'
     
 steps:
 
