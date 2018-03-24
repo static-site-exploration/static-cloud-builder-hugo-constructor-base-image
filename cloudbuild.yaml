@@ -106,7 +106,7 @@ steps:
   - 'site_config_file=${_CONFIG_FILE_SITE}'
   #
   - '--build-arg'
-  - 'themes_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}' # without full path
+  - 'themes_dir=${_PACKAGE_BASE_DIR_REPO_THEME}' # without full path
   #
   - '--build-arg'
   - 'theme_dir_name=${_DIR_NAME_THEME}'
