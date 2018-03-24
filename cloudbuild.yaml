@@ -67,4 +67,4 @@ steps:
   - '-c'
   - |
     echo 'POST GIT CLONE: Listing all workspace directories:'
-    find . -depth ! -path "*/\.*"
+    find . -type d ! -path "*/\.*"
