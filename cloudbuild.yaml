@@ -34,7 +34,9 @@ steps:
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_THEME}
     mkdir -p ${_BUILD_BASE_DIR_PACKAGE}/${_PACKAGE_BASE_DIR_REPO_CONTENT}
     \
-    echo 'Created directories:'
+    echo 'Listing child directories in workspace:'
+    ls -d ${_BUILD_BASE_DIR_PACKAGE}
+    echo 'Finding directories in package:'
     find ${_BUILD_BASE_DIR_PACKAGE} -type d
 
 # Clone the site repo to the workspace site folder
@@ -63,5 +65,7 @@ steps:
   args:
   - '-c'
   - |
-    echo 'POST GIT CLONE: Listing all workspace directories:'
+    echo 'POST GIT CLONE: Finding directories in workspace:'
     find / -type d ! -path "*/\.*"
+    echo 'Listing directories in workspace:'
+    ls -d
