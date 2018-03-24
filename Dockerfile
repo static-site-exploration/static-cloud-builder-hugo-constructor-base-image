@@ -1,9 +1,16 @@
 FROM gcr.io/static-cloud-builders/hugo
 
 # Directories are setup in the base image
-ENV package_dir="/package"
-ENV build_dir="/build"
+ENV container_package_dir="/package"
+ENV container_dist_dir="/dist"
 
-ARG package_source=""
-#COPY ${package_source} ${package_dir}
-RUN test ./package
+ARG builder_package_dir="" # /workspace/package/
+
+WORKDIR ${builder_package_dir}
+COPY . ${container_package_dir}
+
+WORKDIR /
+
+RUN test ${local_package_dir}/site
+RUN test ${local_package_dir}/theme
+RUN test ${local_package_dir}/content
