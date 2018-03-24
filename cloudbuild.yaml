@@ -19,6 +19,15 @@ substitutions:
     # For TESTING PURPOSES ONLY! (not the final build)
     _REPO_URL_HTTPS_CONTENT: 'https://github.com/mobybit/hugo-natrium-theme.git'
     
+    _PACKAGE_BASE_DIR: '/package'
+    
+    # Within each repo folder, the location of configurable directories (for hugo commands) 
+    # Short names that be overriden by trigger setup
+    # THESE CAN BE SET SEPERATLY IN TRIGGER SETUP! (they are relative the remote git repo being used)
+    _DIR_NAME_SITE: '.' #normally root of the repo base
+    _DIR_NAME_THEME: '.' # the name of the folder containing the theme (. if same as the themes dir)
+    _DIR_NAME_CONTENT: 'content' #normally /content of the repo base
+    
     
 steps:
 
@@ -69,3 +78,17 @@ steps:
     find . -type d ! -path "*/\.*"
     echo 'Listing directories in workspace:'
     ls -d
+
+# Build the image
+
+  # Dockefile copies site package to image, otherwise they wont be preloaded!
+  # For flexibility the config items for folder locations can be set (as deterimined by this file) using docker build args
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}'
+  #
+  #
+  #
+  - '.'
