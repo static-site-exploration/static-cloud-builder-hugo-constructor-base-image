@@ -11,9 +11,8 @@ RUN mkdir -p ${container_dist_dir}
 
 RUN ls /localspace
 
-WORKDIR ${builder_package_dir}
-COPY . ${container_package_dir}
+COPY .${builder_package_dir} ${container_package_dir}
 
 WORKDIR /
 
-RUN ls /localspace/package
+RUN ls ${container_package_dir}
