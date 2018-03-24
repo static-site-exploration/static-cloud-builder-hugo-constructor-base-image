@@ -2,6 +2,7 @@
 FROM alpine
 
 # This lists the container built so far
-RUN echo "FROM DOCKERFILE: LISTING ." && ls -a .
+RUN echo "FROM DOCKERFILE: LISTING WORKDIR"
+RUN ls
 
-RUN echo "FROM DOCKERFILE: WORKSPACE" && ls -a /workspace
+#RUN echo "FROM DOCKERFILE: WORKSPACE" && ls -a /workspace
