@@ -5,5 +5,5 @@ FROM alpine
 RUN echo "FROM DOCKERFILE: LISTING WORKDIR"
 RUN ls .
 
-RUN echo "FROM DOCKERFILE: WORKSPACE"
-RUN ls /workspace
+#RUN echo "FROM DOCKERFILE: WORKSPACE"
+#RUN ls /workspace
