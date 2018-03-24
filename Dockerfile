@@ -31,16 +31,16 @@ RUN set -e \
   && echo "should be: /package/site/repo/config.toml" \
   && echo ${container_package_dir}/${site_dir}/${config_file} \
   \
-  && echo "should be: " \
+  && echo "should be: /package/content/repo" \
   && echo ${container_package_dir}/${content_dir} \
   \
-  && echo "should be: " \
+  && echo "should be: /package/theme/repo" \
   && echo  ${container_package_dir}/${themes_dir} \
   \
-  && echo "should be: " \
+  && echo "should be: /package/theme/repo/." \
   && echo  ${container_package_dir}/${themes_dir}/${theme_dir_name} \
   \
-  && echo "should be: " \
+  && echo "should be: /build" \
   && echo  ${container_build_dir}
   
   
