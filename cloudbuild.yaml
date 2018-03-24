@@ -92,8 +92,7 @@ steps:
   # Arguments used by image at BUILD TIME
   #
   - '--build-arg'
-  - 'builder_package_dir=${_BUILD_BASE_DIR_PACKAGE}'
-  #
+  - 'builder_package_dir=${_PACKAGE_BASE_DIR}'
   #
   # Arguments used by the hugo command line inside the image at RUN TIME
   #
