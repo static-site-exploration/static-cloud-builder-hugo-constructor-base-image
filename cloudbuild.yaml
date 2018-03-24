@@ -66,6 +66,6 @@ steps:
   - '-c'
   - |
     echo 'POST GIT CLONE: Finding directories in workspace:'
-    find / -type d ! -path "*/\.*"
+    find . -type d ! -path "*/\.*"
     echo 'Listing directories in workspace:'
     ls -d
