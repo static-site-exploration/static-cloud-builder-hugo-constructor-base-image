@@ -89,6 +89,9 @@ steps:
   - 'build'
   - '--tag=gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}'
   #
+  - '--file'
+  - 'Dockerfile'
+  #
   #
   #
   - '.'
