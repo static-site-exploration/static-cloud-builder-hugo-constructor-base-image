@@ -1,5 +1,5 @@
-FROM gcr.io/static-cloud-builders/hugo
-#FROM alpine
+#FROM gcr.io/static-cloud-builders/hugo
+FROM alpine
 
 # builder /workspace == container /
 
