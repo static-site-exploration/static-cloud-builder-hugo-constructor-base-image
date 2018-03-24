@@ -3,31 +3,63 @@
 
 steps:
 
+# Setup workspace directories
+
+- name: 'gcr.io/cloud-builders/git'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    mkdir -p /workspace/package
+    mkdir -p /workspace/package/site
+    mkdir -p /workspace/package/theme    
+    mkdir -p /workspace/package/dist
+
 # Pull the site
 
   # Use variable for git repo
   # ${_SITE_GIT_REPO_HTTP_LOCATION}
+
+- name: 'gcr.io/cloud-builders/git'
+  args:
+    - 'clone', 
+    - '${_SITE_GIT_REPO_HTTP_LOCATION}'
+    - '/workspace/package/site'
 
 # Pull the theme
 
   # Use variable for git repo
   # ${_THEME_GIT_REPO_HTTP_LOCATION}
 
-# Filter the folders
-
-  # ? maybe need a TOML or JSON file with config, held in GCS or other online storage, 
-  # set config through variable
-  
-  # ${_SITE_FOLDER_CONFG}
-  # Can build a a bash script to create this
-  
+- name: 'gcr.io/cloud-builders/git'
+  args:
+    - 'clone', 
+    - '${_THEME_GIT_REPO_HTTP_LOCATION}'
+    - '/workspace/package/theme'
+    
 # Build the image
 
-  # Dockefile copies site package from /workspace/package
+  # Dockefile copies site package to image, otherwise they wont be preloaded!
+  # For flexibility the config items for folder locations can be set (as deterimined by this file) using docker build args
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}', '.']
-  
+  args:
+    - 'build', 
+    - '--tag=gcr.io/${PROJECT_ID}/${_SITE_BUILD_CONTAINER}', 
+    - '--file',
+    - '/Dockerfile',
+    - '--build-arg',
+    - 'package_source=/workspace/package',   
+    - '--build-arg',
+    - 'config_file=$_CONFIG_FILE_NAME',
+    - '--build-arg',
+    - 'content_dir=$_CONTENT_DIR_NAME',
+    - '--build-arg',
+    - 'themes_dir=$_THEMES_DIR_NAME',
+    - '--build-arg',
+    - 'destination_dir=$_CONTENT_DIR_NAME',    
+    - '.'
+    
 # Push the image
 
   # Use variable for image name
