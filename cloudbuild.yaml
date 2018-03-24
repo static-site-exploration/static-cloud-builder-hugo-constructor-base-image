@@ -92,13 +92,13 @@ steps:
   # Arguments used by image at BUILD TIME
   #
   - '--build-arg'
-  - 'package_source=${_BUILD_BASE_DIR_PACKAGE}'
+  - 'builder_package_dir=${_BUILD_BASE_DIR_PACKAGE}'
   #
   #
   # Arguments used by the hugo command line inside the image at RUN TIME
   #
   - '--build-arg'
-  - 'builder_package_dir=${_CONFIG_FILE_SITE}'
+  - 'site_config_file=${_CONFIG_FILE_SITE}'
   #
   - '--build-arg'
   - 'theme_config_file=${_CONFIG_FILE_THEME}'
