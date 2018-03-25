@@ -30,6 +30,6 @@ RUN set -e \
   --contentDir \
   ${container_package_dir}/${content_dir} \
   \
-  --destination
+  --destination \
   ${container_build_dir}
   
