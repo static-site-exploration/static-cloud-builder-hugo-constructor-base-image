@@ -64,37 +64,37 @@ run_sequence() {
   echo "themes_dir: " $themes_dir
   echo "theme_dir_name: " $theme_dir_name
   echo ""
-  echo "content_path: " $process_content_path
-  echo "destination_path: " $process_destination_path
-  echo ""
   echo "local_test_content_dir: " $local_test_content_dir
   echo "container_build_dir: " $container_build_dir
   echo ""
+  echo "CONTENT_DIR: " $EXT_CONTENT_DIR if [ -z "$EXT_CONTENT_DIR" ] !!! VALUE IS EMPTY !!! fi
+  echo "BUILD_DIR: " $EXT_DEST_DIR if [ -z "$EXT_DEST_DIR" ] !!! VALUE IS EMPTY !!! fi
+  echo ""
   echo "......................................................"
   
-  if [ -z "$process_content_path" ] 
+  if [ -z "$CONTENT_DIR" ] 
   then
     echo ""
     echo "Attention: process_content_path is empty!"
     echo ""
     echo "Setting process_content_path to: use builtin test content"
-    process_content_path=$local_test_content_dir
-    echo "$process_content_path"
+    CONTENT_DIR=$local_test_content_dir
+    echo "$CONTENT_DIR"
     echo ""
   fi
   
-  if [ -z "$process_destination_path" ] 
+  if [ -z "$BUILD_DIR" ] 
   then
     echo ""
     echo "Attention: destination_path is empty!"
     echo ""
     echo "Setting destination_path to: local container builder"
-    process_destination_path=$container_build_dir
-    echo "$process_destination_path"
+    BUILD_DIR=$container_build_dir
+    echo "$BUILD_DIR"
     echo ""
   fi
   
-  if [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
+  if [ -z "$CONTENT_DIR" ] || [ -z "$BUILD_DIR" ] 
   then 
    echo "......................................................"
   fi
@@ -109,8 +109,8 @@ run_sequence() {
   echo "--config ${container_package_dir}/${site_dir}/${site_config_file}";
   echo "--themesDir ${container_package_dir}/${themes_dir}";
   echo "--theme ${theme_dir_name}";
-  echo "--contentDir ${process_content_path}";
-  echo "--destination ${process_destination_path}";
+  echo "--contentDir ${CONTENT_DIR}";
+  echo "--destination ${BUILD_DIR}";
   echo ""
   
   hugo \
@@ -118,17 +118,17 @@ run_sequence() {
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
-    --contentDir ${process_content_path} \
-    --destination ${process_destination_path} \
+    --contentDir ${CONTENT_DIR} \
+    --destination ${BUILD_DIR} \
     
   echo ""
   echo "----------------------"
   echo " Hugo build complete: "
   echo "----------------------"
   echo ""
-  echo "Files in the build directory: $process_destination_path"
+  echo "Files in the build directory: $BUILD_DIR"
   echo ""
-  find ${process_destination_path}
+  find ${BUILD_DIR}
   echo ""
   
 }
