@@ -1,7 +1,7 @@
 FROM busybox
 
-COPY ["/build.sh", "."]
-RUN  ["chmod", "+x", "build.sh"]
+COPY ["/build.sh", "/"]
+RUN  ["chmod", "+x", "/build.sh"]
 
 FROM gcr.io/static-cloud-builders/hugo
 
@@ -47,10 +47,10 @@ ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
 
 # Test the script at build time
-RUN ["build.sh"]
+RUN ["/build.sh"]
 
 #ENTRYPOINT ["sh", "-c", "build.sh"]
-ENTRYPOINT ["build.sh"]
+ENTRYPOINT ["/build.sh"]
 CMD ["a_test_argument_from_exec_AT_BUILD_TIME"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
