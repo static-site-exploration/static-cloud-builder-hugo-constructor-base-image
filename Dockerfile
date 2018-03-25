@@ -1,11 +1,11 @@
-#FROM gcr.io/static-cloud-builders/hugo
+FROM gcr.io/static-cloud-builders/hugo
 
-FROM alpine
-RUN mkdir -p /package
-RUN mkdir -p /build
-RUN mkdir -p /dist
+#FROM alpine
+#RUN mkdir -p /package
+#RUN mkdir -p /build
+#RUN mkdir -p /dist
 
-# builder /workspace == container /
+# NOTE: builder /workspace == container /
 
 ARG builder_package_dir
 ARG container_package_dir="/package"
@@ -21,47 +21,25 @@ ARG content_dir
 
 ARG container_build_dir="/build"
 
-RUN echo ${builder_package_dir}
-RUN ls ${container_package_dir}
 
-RUN set -e \
-  \
-  echo "Starting variable echo's:" \
-  \
-  && echo "should be: /package/site/repo/exampleSite/config.toml" \
-  && echo ${container_package_dir}/${site_dir}/${site_config_file} \
-  \
-  && echo "should be: /package/content/repo/content" \
-  && echo ${container_package_dir}/${content_dir} \
-  \
-  && echo "should be: /package/theme/repo" \
-  && echo  ${container_package_dir}/${themes_dir} \
-  \
-  && echo "should be: /package/theme/repo/." \
-  && echo  ${container_package_dir}/${themes_dir}/${theme_dir_name} \
-  \
-  && echo "should be: /build" \
-  && echo  ${container_build_dir}
-  
-  
 #CMD ${container_build_dir}
 
-#RUN hugo \
-#  --enableGitInfo \
+RUN hugo \
+  --enableGitInfo \
 
-#  --config ${container_package_dir}/${site_dir}/${config_file} \
+  --config ${container_package_dir}/${site_dir}/${config_file} \
 #       /package/site/repo/config.toml
 
-#  --contentDir ${container_package_dir}/${content_dir} \
+  --contentDir ${container_package_dir}/${content_dir} \
 #       /package/content/repo
 
-#  --themesDir ${container_package_dir}/${themes_dir} \
+  --themesDir ${container_package_dir}/${themes_dir} \
 #       /package/theme/repo
 
-#  --theme ${container_package_dir}/${themes_dir}/${theme_dir_name} \
+  --theme ${container_package_dir}/${themes_dir}/${theme_dir_name} \
 #       /package/theme/repo/.
 #       /package/theme/repo/a-theme-name
 
-#  --destination ${container_build_dir}
+  --destination ${container_build_dir}
 #       /build
 
