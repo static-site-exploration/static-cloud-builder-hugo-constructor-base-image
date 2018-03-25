@@ -31,6 +31,7 @@ if [ -d "/workspace" ]
 then
   echo "WORKSPACE TEST POSITIVE"
   ls /workspace
+  echo "hello from inside container" > /workspace/hello.txt
 else 
   echo "WORKSPACE TEST NEGATIVE"
 fi
