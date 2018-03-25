@@ -63,6 +63,27 @@ run_sequence() {
   echo ""
   echo "......................................................"
   
+  echo ""
+  echo "---------------------------"
+  echo " Running hugo using flags: "
+  echo "---------------------------"
+  echo ""
+  echo "--config ${container_package_dir}/${site_dir}/${site_config_file}";
+  echo "--themesDir ${container_package_dir}/${themes_dir}";
+  echo "--theme ${theme_dir_name}";
+  echo "--contentDir ${content_path}";
+  echo "--destination ${destination_path}";
+  echo ""
+  
+  hugo \
+    --config ${container_package_dir}/${site_dir}/${site_config_file} \
+    --themesDir ${container_package_dir}/${themes_dir} \
+    --theme ${theme_dir_name} \
+    \
+    --contentDir ${content_path} \
+    --destination ${destination_path} \
+    
+  echo ""
 }
 
 if [ -d "/workspace" ] 
