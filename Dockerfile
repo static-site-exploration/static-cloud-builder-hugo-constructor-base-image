@@ -46,6 +46,10 @@ ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
 
+# Test the script at build time
+RUN ["build.sh"]
+RUN ["build.sh", "a_test_argument_from_exec_AT_BUILD_TIME"]
+
 #ENTRYPOINT ["sh", "-c", "build.sh"]
 ENTRYPOINT ["build.sh"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
