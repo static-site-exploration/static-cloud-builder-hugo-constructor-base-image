@@ -109,7 +109,7 @@ steps:
   - 'themes_dir=${_PACKAGE_BASE_DIR_REPO_THEME}' # without full path
   #
   - '--build-arg'
-  - 'theme_dir_name=${_DIR_NAME_THEME}'
+  - 'theme_dir_name=/${_DIR_NAME_THEME}'
   #
   - '--build-arg'
   - 'theme_config_file=${_CONFIG_FILE_THEME}'
