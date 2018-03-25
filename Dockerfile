@@ -40,6 +40,6 @@ ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
 
-ENTRYPOINT ["/build.sh"]
+ENTRYPOINT ["sh", "-c", "/build.sh"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
