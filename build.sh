@@ -24,10 +24,4 @@ echo "running script in directory:"; pwd
 echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
 
-#echo "Listing . (should show pwd /bin)"
-#ls -a . # requires busybox or installed utils
-
-#echo "Listing /workspace (should contents of /workspace)"
-#ls -a /workspace # requires busybox or installed utils
-
-
+ls /workspace
