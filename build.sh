@@ -17,15 +17,13 @@
 set -e
 
 debug_checks() {
+
   # Test hugo works
   test hugo
   echo "running script in directory:"
   pwd
   echo "running with arguments:"
   echo "$@"
-
-  echo "Listing / (container root /)"
-  ls -a / # requires busybox or installed utils
 }
 
 report_arguments() {
