@@ -7,7 +7,7 @@ FROM gcr.io/static-cloud-builders/hugo
 
 # NOTE: builder /workspace == container / && container default WORKDIR == ./ 
 
-COPY --from=0 build.sh .
+COPY --from=0 /build.sh /
 
 ARG builder_package_dir
 ENV container_package_dir="/package"
