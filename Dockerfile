@@ -48,7 +48,7 @@ ENV content_dir=${content_dir}
 
 # Test the script at build time
 RUN ["build.sh"]
-RUN ["build.sh", "a_test_argument_from_exec_AT_BUILD_TIME"]
+#RUN ["build.sh", "a_test_argument_from_exec_AT_BUILD_TIME"]
 
 #ENTRYPOINT ["sh", "-c", "build.sh"]
 ENTRYPOINT ["build.sh"]
