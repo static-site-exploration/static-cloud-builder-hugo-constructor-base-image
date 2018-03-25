@@ -24,9 +24,6 @@ ARG container_build_dir="/build"
 
 RUN find /package
 
-hugo --config ~/gitspace/natrium/exampleSite/config.toml --themesDir ~/gitspace/natrium --theme /. --contentDir ~/gitspa
-ce/natrium/exampleSite/content --destination ~/build
-
 RUN set -e \
   \
   echo "Starting variable echo's:" \
