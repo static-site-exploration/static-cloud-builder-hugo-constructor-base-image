@@ -1,6 +1,4 @@
-
-##!/bin/sh
-#!/usr/bin/with-contenv sh
+#!/bin/sh
 
 #
 # Script Name: build.sh
