@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #
 # Script Name: build.sh
 #
@@ -8,7 +7,7 @@
 #
 # Description: NOTE! this is sh and not bash. The following script builds the hugo package using the loaded site configuation and content location supplied in arguments
 #
-# Run Information: This script is run manually.
+# Run Information: This script is run by Google Cloud Builer docker image.
 #
 # Standard Output: Any output is sent to a file called output.log
 #
@@ -126,11 +125,9 @@ run_sequence() {
   echo " Hugo build complete: "
   echo "----------------------"
   echo ""
-  echo "Files in the build directory: $BUILD_DIR"
+  echo "Created $(find ${BUILD_DIR} | wc -l) files in the build directory: $BUILD_DIR"
   echo ""
-  find ${BUILD_DIR}
-  echo ""
-  
+    
 }
 
 if [ -d "/workspace" ] 
