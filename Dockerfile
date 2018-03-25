@@ -33,6 +33,7 @@ RUN set -e \
 # !! NEED TO SET THESE ENTRYPOINT VARIABLE VALUES (something like eval) AT BUILD TIME !!
 
 ENV site_dir=${site_dir}
+ENV site_config_file=${site_config_file}
 ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
