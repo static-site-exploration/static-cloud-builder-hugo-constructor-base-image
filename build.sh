@@ -21,10 +21,10 @@ set -e
 test hugo
 
 echo "Listing / (should show contents of /workspace)"
-/bin/ls -a /
+ls /bin/ls -a / # requires busybox or installed utils
 
 echo "Listing . (should show contents of container dirs)"
-/bin/ls -a .
+ls /bin/ls -a . # requires busybox or installed utils
 
 if [ -z "$@" ]
 then
