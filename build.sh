@@ -18,7 +18,7 @@
 set -e;
 
 # Test hugo works
-hugo --version;
+test hugo;
 
 if [ -z "$@" ]
 then
