@@ -16,7 +16,7 @@ ARG content_dir
 
 # Make selected argument values available at RUN time
 ENV container_package_dir="/package"
-ENV container_build_dir="/build"
+ENV container_build_dir="/tmp/build"
 ENV site_dir=${site_dir}
 ENV site_config_file=${site_config_file}
 ENV themes_dir=${themes_dir}
