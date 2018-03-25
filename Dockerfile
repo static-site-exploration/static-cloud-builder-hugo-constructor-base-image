@@ -1,7 +1,6 @@
 #FROM gcr.io/static-cloud-builders/hugo
 
-FROM alpine
-RUN apk add -u findutils
+FROM busybox
 
 RUN mkdir -p /package
 RUN mkdir -p /build
