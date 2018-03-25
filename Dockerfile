@@ -30,7 +30,7 @@ RUN set -e \
   \
   && echo "hugo WORKDIR / " \
   \
-  && echo "--config should be:"
+  && echo "--config should be:" \
   && echo "/package/site/repo/exampleSite/config.toml" \
   && echo "${container_package_dir}/${site_dir}/${site_config_file}" \
   \
