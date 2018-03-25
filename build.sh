@@ -93,8 +93,8 @@ run_sequence() {
     echo ""
 
   elif [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
-    echo "......................................................"
-  then
+  then 
+   echo "......................................................"
   fi
   
   echo ""
