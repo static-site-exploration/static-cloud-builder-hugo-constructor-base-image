@@ -25,7 +25,7 @@ echo "running with arguments:"; echo "$@"
 echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
 
-ls /bin
+#ls /bin
 
 if [ -d "/workspace" ] 
 then
