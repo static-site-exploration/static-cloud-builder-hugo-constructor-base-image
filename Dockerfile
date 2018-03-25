@@ -22,5 +22,4 @@ ARG content_dir
 
 ARG container_build_dir="/build"
 
-RUN find /package -type -d
-
+RUN find /package
