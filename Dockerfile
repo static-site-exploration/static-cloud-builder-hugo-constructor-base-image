@@ -1,6 +1,8 @@
 #FROM gcr.io/static-cloud-builders/hugo
 
 FROM alpine
+RUN apk add findutils
+
 RUN mkdir -p /package
 RUN mkdir -p /build
 RUN mkdir -p /dist
