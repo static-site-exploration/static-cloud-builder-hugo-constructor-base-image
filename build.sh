@@ -27,17 +27,7 @@ echo "$@"
 echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
 
-if [ -d "/workspace" ] 
-then
-  run_sequence
-else 
-  echo "WORKSPACE TEST NEGATIVE"
-fi
-
 run_sequence() {
-  echo "WORKSPACE TEST POSITIVE"
-  ls /workspace
-  echo "hello from inside container" > /workspace/hello.txt
   
   if [ -z "$@" ]
   then
@@ -75,3 +65,12 @@ run_sequence() {
   
 }
 
+if [ -d "/workspace" ] 
+then
+  echo "WORKSPACE TEST POSITIVE"
+  ls /workspace
+  echo "hello from inside container" > /workspace/hello$RANDOM.txt
+  run_sequence
+else 
+  echo "WORKSPACE TEST NEGATIVE"
+fi
