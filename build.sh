@@ -94,6 +94,7 @@ run_sequence() {
 
   elif [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
     echo "......................................................"
+  then
   fi
   
   echo ""
