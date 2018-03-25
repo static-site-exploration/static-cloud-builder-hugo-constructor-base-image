@@ -20,11 +20,14 @@ set -e
 # Test hugo works
 test hugo
 
-echo "Listing / (should show contents of /workspace)"
-ls /bin/ls -a / # requires busybox or installed utils
+echo "Listing / (should show contents of docker system /)"
+ls -a / # requires busybox or installed utils
 
 echo "Listing . (should show contents of container dirs)"
-ls /bin/ls -a . # requires busybox or installed utils
+ls -a . # requires busybox or installed utils
+
+echo "Listing /workspace (should contents of /workspace)"
+ls -a . # requires busybox or installed utils
 
 if [ -z "$@" ]
 then
