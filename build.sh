@@ -15,12 +15,16 @@
 # Error Log: Any errors associated with this script are sent to a file called errors.log
 #
 
-set -e;
+set -e
 
 # Test hugo works
-test hugo;
+test hugo
 
-echo "ARGUMENTS:."; echo "$@"
+echo "Listing / (should show contents of /workspace)"
+ls -a /
+
+echo "Listing . (should show contents of container dirs)"
+ls -a .
 
 if [ -z "$@" ]
 then
