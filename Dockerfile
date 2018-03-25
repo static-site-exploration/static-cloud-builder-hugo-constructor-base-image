@@ -30,18 +30,23 @@ RUN set -e \
   \
   && echo "hugo WORKDIR / " \
   \
-  && echo "--config should be: \n/package/site/repo/exampleSite/config.toml" \ 
-  && echo ${container_package_dir}/${site_dir}/${site_config_file} \
+  && echo "--config should be:"
+  && echo "/package/site/repo/exampleSite/config.toml" \
+  && echo "${container_package_dir}/${site_dir}/${site_config_file}" \
   \
-  && echo "--themesDir should be: \n/package/theme/repo/. (including repo sub folder)" \
-  && echo  ${container_package_dir}/${themes_dir} \
+  && echo "--themesDir should be:" \
+  && echo "/package/theme/repo/. (including repo sub folder)" \
+  && echo "${container_package_dir}/${themes_dir}" \
   \
-  && echo "--theme should be: \n/." \
+  && echo "--theme should be:" \
+  && echo  "/." \
   && echo  ${theme_dir_name} \
   \
-  && echo "--contentDir should be: \n/package/content/repo/exampleSite/content (including repo sub folder)" \
+  && echo "--contentDir should be:" \
+  && echo "/package/content/repo/exampleSite/content (including repo sub folder)" \
   && echo ${container_package_dir}/${content_dir} \
   \
-  && echo "--destination should be: \n/build" \
+  && echo "--destination should be:" \
+  && echo "/build" \
   && echo  ${container_build_dir}
   
