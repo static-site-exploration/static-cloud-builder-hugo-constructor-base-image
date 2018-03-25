@@ -3,8 +3,8 @@ FROM gcr.io/static-cloud-builders/hugo
 # NOTE: builder /workspace == container /
 
 ARG builder_package_dir
-ARG container_package_dir="/package"
-ARG container_build_dir="/build"
+ENV container_package_dir="/package"
+ENV container_build_dir="/build"
 
 COPY ["${builder_package_dir}", "${container_package_dir}"]
 
@@ -31,6 +31,11 @@ RUN set -e \
   --destination ${container_build_dir}
 
 # !! NEED TO SET THESE ENTRYPOINT VARIABLE VALUES (something like eval) AT BUILD TIME !!
+
+ENV site_dir=${site_dir}
+ENV themes_dir=${themes_dir}
+ENV theme_dir_name=${theme_dir_name}
+ENV content_dir=${content_dir}
 
 ENTRYPOINT ["hugo", "--config", "${container_package_dir}/${site_dir}/${site_config_file}", "--themesDir", "${container_package_dir}/${themes_dir}", "--theme", "${theme_dir_name}"]
 
