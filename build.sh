@@ -20,6 +20,8 @@ set -e;
 # Test hugo works
 test hugo;
 
+echo "ARGUMENTS:."; echo "$@"
+
 if [ -z "$@" ]
 then
   echo "hello from build.sh, NO ARGUMENTS RECIEVED"
