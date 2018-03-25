@@ -29,7 +29,7 @@ RUN set -e \
   echo "Starting variable echo's:" \
   \
   && echo "should be: /package/site/repo/exampleSite/config.toml" \
-  && echo ${container_package_dir}/${site_dir}/${config_file} \
+  && echo ${container_package_dir}/${site_dir}/${site_config_file} \
   \
   && echo "should be: /package/content/repo/content" \
   && echo ${container_package_dir}/${content_dir} \
