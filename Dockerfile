@@ -23,3 +23,22 @@ ARG content_dir
 ARG container_build_dir="/build"
 
 RUN find /package
+
+RUN set -e \
+  \
+  echo "Starting variable echo's:" \
+  \
+  && echo "should be: /package/site/repo/exampleSite/config.toml" \
+  && echo ${container_package_dir}/${site_dir}/${site_config_file} \
+  \
+  && echo "should be: /package/content/repo/content" \
+  && echo ${container_package_dir}/${content_dir} \
+  \
+  && echo "should be: /package/theme/repo" \
+  && echo  ${container_package_dir}/${themes_dir} \
+  \
+  && echo "should be: /package/theme/repo/." \
+  && echo  ${container_package_dir}/${themes_dir}/${theme_dir_name} \
+  \
+  && echo "should be: /build" \
+  && echo  ${container_build_dir}
