@@ -17,17 +17,19 @@
 
 set -e
 
-# Test hugo works
-test hugo
-echo "running script in directory:"
-pwd
-echo "running with arguments:"
-echo "$@"
+debug_checks() {
+  # Test hugo works
+  test hugo
+  echo "running script in directory:"
+  pwd
+  echo "running with arguments:"
+  echo "$@"
 
-echo "Listing / (container root /)"
-ls -a / # requires busybox or installed utils
+  echo "Listing / (container root /)"
+  ls -a / # requires busybox or installed utils
+}
 
-run_sequence() {
+report_arguments() {
   
   if [ -z "$@" ]
   then
@@ -35,7 +37,6 @@ run_sequence() {
     echo "-------------------------"
     echo " NO ARGUMENTS RECIEVED ! "
     echo "-------------------------"
-    echo ""
   else
     echo ""
     echo "------------------"
@@ -46,6 +47,10 @@ run_sequence() {
     echo ""
     echo "......................................................"
   fi
+
+}
+
+run_sequence() {
   
   echo ""
   echo "-------------------------------------"
@@ -76,17 +81,19 @@ run_sequence() {
     process_content_path=$local_test_content_dir
     echo "$process_content_path"
     echo ""
-  fi
-  
-  if [ -z "$process_destination_path" ] 
+
+  elif [ -z "$process_destination_path" ] 
   then
     echo ""
     echo "Attention: destination_path is empty!"
     echo ""
     echo "Setting destination_path to: local container builder"
     process_destination_path=$container_build_dir
-    echo "$destination_path"
+    echo "$process_destination_path"
     echo ""
+
+  elif [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
+    echo "......................................................"
   fi
   
   echo ""
@@ -125,10 +132,19 @@ run_sequence() {
 
 if [ -d "/workspace" ] 
 then
-  echo "WORKSPACE TEST POSITIVE"
-  ls /workspace
-  echo "hello from inside container" > /workspace/hello$RANDOM.txt
+  echo ""
+  echo "-------------------------"
+  echo " WORKSPACE TEST POSITIVE "
+  echo "-------------------------"
+  echo ""
+  
+  debug_checks "$@"
+  report_arguments "$@"
   run_sequence "$@"
 else 
-  echo "WORKSPACE TEST NEGATIVE"
+  echo ""
+  echo "-------------------------"
+  echo " WORKSPACE TEST NEGATIVE "
+  echo "-------------------------"
+  echo ""
 fi
