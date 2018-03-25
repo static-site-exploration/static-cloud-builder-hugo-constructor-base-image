@@ -36,6 +36,7 @@ if [ -n "$1" ]
 then
   content_path="$1"
 elif [ -n "$2" ]
+then
   destination_path="$2"
 fi
 
