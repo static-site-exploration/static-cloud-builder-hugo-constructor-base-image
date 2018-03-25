@@ -28,6 +28,14 @@ echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
 
 run_sequence() {
+
+  if [ -z "$process_content_path" ] 
+  then
+    process_content_path=local_test_content_dir
+  elif [ -z "$destination_path" ] 
+  then
+    destination_path=container_build_dir
+  fi
   
   if [ -z "$@" ]
   then
@@ -58,7 +66,7 @@ run_sequence() {
   echo "site_config_file: " $site_config_file
   echo "themes_dir: " $themes_dir
   echo "theme_dir_name: " $theme_dir_name
-  echo "content_path: " $content_path
+  echo "content_path: " $content_dir
   echo "destination_path: " $destination_path
   echo ""
   echo "......................................................"
@@ -71,8 +79,8 @@ run_sequence() {
   echo "--config ${container_package_dir}/${site_dir}/${site_config_file}";
   echo "--themesDir ${container_package_dir}/${themes_dir}";
   echo "--theme ${theme_dir_name}";
-  echo "--contentDir ${content_path}";
-  echo "--destination ${destination_path}";
+  echo "--contentDir ${process_content_path}";
+  echo "--destination ${process_destination_path}";
   echo ""
   
   hugo \
