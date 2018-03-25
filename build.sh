@@ -70,7 +70,7 @@ then
   echo "WORKSPACE TEST POSITIVE"
   ls /workspace
   echo "hello from inside container" > /workspace/hello$RANDOM.txt
-  run_sequence
+  run_sequence "$@"
 else 
   echo "WORKSPACE TEST NEGATIVE"
 fi
