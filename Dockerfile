@@ -7,20 +7,26 @@ FROM gcr.io/static-cloud-builders/hugo
 
 # NOTE: builder /workspace == container / && container default WORKDIR == ./ 
 
-COPY --from=0 /build.sh /
-
 ARG builder_package_dir
-ENV container_package_dir="/package"
-ENV container_build_dir="/build"
-
-COPY ["${builder_package_dir}", "${container_package_dir}"]
-
 ARG site_dir
 ARG site_config_file
 ARG themes_dir
 ARG theme_dir_name
 ARG theme_config_file
 ARG content_dir
+
+# Make selected argument values available at RUN time
+
+ENV container_package_dir="/package"
+ENV container_build_dir="/build"
+ENV site_dir=${site_dir}
+ENV site_config_file=${site_config_file}
+ENV themes_dir=${themes_dir}
+ENV theme_dir_name=${theme_dir_name}
+ENV content_dir=${content_dir}
+
+COPY --from=0 /build.sh /
+COPY ["${builder_package_dir}", "${container_package_dir}"]
 
 # Validate hugo build run using preloaded test content at docker (image) build time
 RUN set -e \
@@ -38,13 +44,6 @@ RUN set -e \
   --destination ${container_build_dir}
 
 # !! NEED TO SET THESE ENTRYPOINT VARIABLE VALUES (something like eval) AT BUILD TIME !!
-
-# Make selected argument values available at RUN time
-ENV site_dir=${site_dir}
-ENV site_config_file=${site_config_file}
-ENV themes_dir=${themes_dir}
-ENV theme_dir_name=${theme_dir_name}
-ENV content_dir=${content_dir}
 
 # Test the script at build time
 RUN ["/build.sh"]
