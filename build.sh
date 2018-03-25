@@ -58,8 +58,12 @@ run_sequence() {
   echo "site_config_file: " $site_config_file
   echo "themes_dir: " $themes_dir
   echo "theme_dir_name: " $theme_dir_name
+  echo ""
   echo "content_path: " $process_content_path
   echo "destination_path: " $process_destination_path
+  echo ""
+  echo "local_test_content_dir: " $local_test_content_dir
+  echo "container_build_dir: " $container_build_dir
   echo ""
   echo "......................................................"
   
@@ -68,15 +72,17 @@ run_sequence() {
     echo ""
     echo "Attention: process_content_path is empty!"
     echo "Setting process_content_path to: use builtin test content"
-    process_content_path=local_test_content_dir
+    process_content_path=$local_test_content_dir
     echo "$process_content_path"
     echo ""
-  elif [ -z "$destination_path" ] 
+  fi
+  
+  if [ -z "$destination_path" ] 
   then
     echo ""
     echo "Attention: destination_path is empty!"
     echo "Setting destination_path to: local container builder"
-    destination_path=container_build_dir
+    destination_path=$container_build_dir
     echo "$destination_path"
     echo ""
   fi
