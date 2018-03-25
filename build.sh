@@ -75,8 +75,8 @@ run_sequence() {
   echo "local_test_content_dir: " ${local_test_content_dir}
   echo "container_build_dir: " ${container_build_dir}
   echo ""
-  echo "CONTENT_DIR: " $(display_value ${EXT_CONTENT_DIR} ) 
-  echo "BUILD_DIR: " $(display_value ${EXT_DEST_DIR} ) 
+  echo "CONTENT_DIR: " $(display_value ${CONTENT_DIR} ) 
+  echo "BUILD_DIR: " $(display_value ${BUILD_DIR} ) 
   echo ""
   echo "......................................................"
   
