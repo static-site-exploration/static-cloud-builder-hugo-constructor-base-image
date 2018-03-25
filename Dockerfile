@@ -51,6 +51,6 @@ RUN ["/build.sh"]
 
 #ENTRYPOINT ["sh", "-c", "build.sh"]
 ENTRYPOINT ["/build.sh"]
-CMD ["a_test_argument_from_exec_AT_BUILD_TIME"]
+#CMD ["a_test_argument_from_exec_AT_BUILD_TIME"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
