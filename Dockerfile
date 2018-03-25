@@ -1,12 +1,13 @@
 FROM gcr.io/static-cloud-builders/hugo
 
-# NOTE: builder /workspace == container /
+# NOTE: builder /workspace == container / && container default WORKDIR == ./ 
 
 ARG builder_package_dir
 ENV container_package_dir="/package"
 ENV container_build_dir="/build"
 
 COPY ["${builder_package_dir}", "${container_package_dir}"]
+COPY ["/build.sh", "./"]
 
 ARG site_dir
 ARG site_config_file
