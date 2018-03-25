@@ -94,6 +94,8 @@ run_sequence() {
   echo " Running hugo using flags: "
   echo "---------------------------"
   echo ""
+  echo "Running in build directory: $process_destination_path"
+  echo ""
   echo "--config ${container_package_dir}/${site_dir}/${site_config_file}";
   echo "--themesDir ${container_package_dir}/${themes_dir}";
   echo "--theme ${theme_dir_name}";
@@ -110,6 +112,15 @@ run_sequence() {
     --destination ${process_destination_path} \
     
   echo ""
+  echo "----------------------"
+  echo " Hugo build complete: "
+  echo "----------------------"
+  echo ""
+  echo "Files in the build directory: $process_destination_path"
+  echo ""
+  find ${process_destination_path}
+  echo ""
+  
 }
 
 if [ -d "/workspace" ] 
