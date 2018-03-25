@@ -7,7 +7,7 @@ ENV container_package_dir="/package"
 ENV container_build_dir="/build"
 
 COPY ["${builder_package_dir}", "${container_package_dir}"]
-COPY ["/build.sh", "./"]
+COPY ["/build.sh", "."]
 
 ARG site_dir
 ARG site_config_file
@@ -40,6 +40,6 @@ ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
 
-ENTRYPOINT ["build.sh"]
+ENTRYPOINT ["/build.sh"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
