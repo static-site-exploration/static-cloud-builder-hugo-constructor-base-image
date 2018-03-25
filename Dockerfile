@@ -23,7 +23,7 @@ ENV site_dir=${site_dir}
 ENV site_config_file=${site_config_file}
 ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
-ENV content_dir=${local_test_content_dir}
+ENV local_test_content_dir=${content_dir}
 
 COPY --from=0 /build.sh /
 COPY ["${builder_package_dir}", "${container_package_dir}"]
