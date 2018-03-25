@@ -24,3 +24,12 @@ echo "running with arguments:"; echo "$@"
 
 echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
+
+ls /bin
+
+if [ -d "/workspace" ] 
+then
+  echo "WORKSPACE TEST POSITIVE"
+else 
+  echo "WORKSPACE TEST NEGATIVE"
+fi
