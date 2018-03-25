@@ -118,3 +118,6 @@ steps:
   - 'content_dir=${_PACKAGE_BASE_DIR_REPO_CONTENT}/${_DIR_NAME_CONTENT}'
   #
   - '.'
+
+# Push the image
+images: ['gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}']
