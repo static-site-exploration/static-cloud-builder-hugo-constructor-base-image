@@ -32,14 +32,13 @@ RUN set -e \
 
 # !! NEED TO SET THESE ENTRYPOINT VARIABLE VALUES (something like eval) AT BUILD TIME !!
 
+# Make selected argument values available at RUN time
 ENV site_dir=${site_dir}
 ENV site_config_file=${site_config_file}
 ENV themes_dir=${themes_dir}
 ENV theme_dir_name=${theme_dir_name}
 ENV content_dir=${content_dir}
 
-ENTRYPOINT ["hugo", "--config", "${container_package_dir}/${site_dir}/${site_config_file}", "--themesDir", "${container_package_dir}/${themes_dir}", "--theme", "${theme_dir_name}"]
-
+ENTRYPOINT ["build.sh"]
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
-CMD ["--contentDir", "${container_package_dir}/${content_dir}", "--destination", "${container_build_dir}"]
