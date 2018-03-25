@@ -21,10 +21,10 @@ set -e
 test hugo
 
 echo "Listing / (should show contents of /workspace)"
-ls -a /
+/bin/ls -a /
 
 echo "Listing . (should show contents of container dirs)"
-ls -a .
+/bin/ls -a .
 
 if [ -z "$@" ]
 then
