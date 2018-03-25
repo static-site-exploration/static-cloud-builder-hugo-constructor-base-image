@@ -7,6 +7,9 @@ FROM gcr.io/static-cloud-builders/hugo
 
 # NOTE: builder /workspace == container / && container default WORKDIR == ./ 
 
+# For debugging!
+RUN apk add util-linux pciutils usbutils coreutils binutils findutils grep
+
 COPY --from=0 build.sh .
 
 ARG builder_package_dir
