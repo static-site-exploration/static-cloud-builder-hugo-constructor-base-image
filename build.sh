@@ -65,18 +65,18 @@ run_sequence() {
   echo " Using envionment builtin variables: "
   echo "-------------------------------------"
   echo ""
-  echo "container_package_dir: " $container_package_dir
-  echo "container_build_dir: " $container_build_dir
-  echo "site_dir: " $site_dir
-  echo "site_config_file: " $site_config_file
-  echo "themes_dir: " $themes_dir
-  echo "theme_dir_name: " $theme_dir_name
+  echo "container_package_dir: " ${container_package_dir}
+  echo "container_build_dir: " ${container_build_dir}
+  echo "site_dir: " ${site_dir}
+  echo "site_config_file: " ${site_config_file}
+  echo "themes_dir: " ${themes_dir}
+  echo "theme_dir_name: " ${theme_dir_name}
   echo ""
-  echo "local_test_content_dir: " $local_test_content_dir
-  echo "container_build_dir: " $container_build_dir
+  echo "local_test_content_dir: " ${local_test_content_dir}
+  echo "container_build_dir: " ${container_build_dir}
   echo ""
-  echo "CONTENT_DIR: " $(display_value $EXT_CONTENT_DIR) 
-  echo "BUILD_DIR: " $(display_value $EXT_DEST_DIR) 
+  echo "CONTENT_DIR: " $(display_value ${EXT_CONTENT_DIR} ) 
+  echo "BUILD_DIR: " $(display_value ${EXT_DEST_DIR} ) 
   echo ""
   echo "......................................................"
   
@@ -86,8 +86,8 @@ run_sequence() {
     echo "Attention: process_content_path is empty!"
     echo ""
     echo "Setting process_content_path to: use builtin test content"
-    CONTENT_DIR=$local_test_content_dir
-    echo "$CONTENT_DIR"
+    CONTENT_DIR=${container_package_dir}/${local_test_content_dir}
+    echo "${CONTENT_DIR}"
     echo ""
   fi
   
@@ -97,8 +97,8 @@ run_sequence() {
     echo "Attention: destination_path is empty!"
     echo ""
     echo "Setting destination_path to: local container builder"
-    BUILD_DIR=$container_build_dir
-    echo "$BUILD_DIR"
+    BUILD_DIR=${container_build_dir}
+    echo "${BUILD_DIR}"
     echo ""
   fi
   
@@ -112,7 +112,7 @@ run_sequence() {
   echo " Running hugo using flags: "
   echo "---------------------------"
   echo ""
-  echo "Running in build directory: $process_destination_path"
+  echo "Running in build directory: ${process_destination_path}"
   echo ""
   echo "--config ${container_package_dir}/${site_dir}/${site_config_file}";
   echo "--themesDir ${container_package_dir}/${themes_dir}";
@@ -134,7 +134,7 @@ run_sequence() {
   echo " Hugo build complete: "
   echo "----------------------"
   echo ""
-  echo "Created $(find ${BUILD_DIR} | wc -l) files in the build directory: $BUILD_DIR"
+  echo "Created $(find ${BUILD_DIR} | wc -l) files in the build directory: ${BUILD_DIR}"
   echo ""
     
 }
