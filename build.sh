@@ -30,6 +30,7 @@ ls /bin
 if [ -d "/workspace" ] 
 then
   echo "WORKSPACE TEST POSITIVE"
+  ls /workspace
 else 
   echo "WORKSPACE TEST NEGATIVE"
 fi
