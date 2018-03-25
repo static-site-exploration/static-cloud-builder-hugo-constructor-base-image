@@ -71,18 +71,20 @@ run_sequence() {
   then
     echo ""
     echo "Attention: process_content_path is empty!"
+    echo ""
     echo "Setting process_content_path to: use builtin test content"
     process_content_path=$local_test_content_dir
     echo "$process_content_path"
     echo ""
   fi
   
-  if [ -z "$destination_path" ] 
+  if [ -z "$process_destination_path" ] 
   then
     echo ""
     echo "Attention: destination_path is empty!"
+    echo ""
     echo "Setting destination_path to: local container builder"
-    destination_path=$container_build_dir
+    process_destination_path=$container_build_dir
     echo "$destination_path"
     echo ""
   fi
