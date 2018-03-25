@@ -81,8 +81,9 @@ run_sequence() {
     process_content_path=$local_test_content_dir
     echo "$process_content_path"
     echo ""
-
-  elif [ -z "$process_destination_path" ] 
+  fi
+  
+  if [ -z "$process_destination_path" ] 
   then
     echo ""
     echo "Attention: destination_path is empty!"
@@ -91,8 +92,9 @@ run_sequence() {
     process_destination_path=$container_build_dir
     echo "$process_destination_path"
     echo ""
-
-  elif [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
+  fi
+  
+  if [ -z "$process_destination_path" ] || [ -z "$process_destination_path" ] 
   then 
    echo "......................................................"
   fi
