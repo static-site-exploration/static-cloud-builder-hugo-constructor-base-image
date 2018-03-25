@@ -28,14 +28,6 @@ echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
 
 run_sequence() {
-
-  if [ -z "$process_content_path" ] 
-  then
-    process_content_path=local_test_content_dir
-  elif [ -z "$destination_path" ] 
-  then
-    destination_path=container_build_dir
-  fi
   
   if [ -z "$@" ]
   then
@@ -56,9 +48,9 @@ run_sequence() {
   fi
   
   echo ""
-  echo "-----------------------------"
-  echo " Using envionment variables: "
-  echo "-----------------------------"
+  echo "-------------------------------------"
+  echo " Using envionment builtin variables: "
+  echo "-------------------------------------"
   echo ""
   echo "container_package_dir: " $container_package_dir
   echo "container_build_dir: " $container_build_dir
@@ -66,10 +58,28 @@ run_sequence() {
   echo "site_config_file: " $site_config_file
   echo "themes_dir: " $themes_dir
   echo "theme_dir_name: " $theme_dir_name
-  echo "content_path: " $content_dir
-  echo "destination_path: " $destination_path
+  echo "content_path: " $process_content_path
+  echo "destination_path: " $process_destination_path
   echo ""
   echo "......................................................"
+  
+  if [ -z "$process_content_path" ] 
+  then
+    echo ""
+    echo "Attention: process_content_path is empty!"
+    echo "Setting process_content_path to: use builtin test content"
+    process_content_path=local_test_content_dir
+    echo "$process_content_path"
+    echo ""
+  elif [ -z "$destination_path" ] 
+  then
+    echo ""
+    echo "Attention: destination_path is empty!"
+    echo "Setting destination_path to: local container builder"
+    destination_path=container_build_dir
+    echo "$destination_path"
+    echo ""
+  fi
   
   echo ""
   echo "---------------------------"
@@ -88,8 +98,8 @@ run_sequence() {
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
-    --contentDir ${content_path} \
-    --destination ${destination_path} \
+    --contentDir ${process_content_path} \
+    --destination ${process_destination_path} \
     
   echo ""
 }
