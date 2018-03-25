@@ -47,6 +47,17 @@ report_arguments() {
 
 }
 
+display_value() {
+
+  if [ -z "$1" ] 
+  then 
+    echo "!!! VALUE IS EMPTY !!!"
+  else
+    echo "$1"
+  fi
+
+}
+
 run_sequence() {
   
   echo ""
@@ -64,8 +75,8 @@ run_sequence() {
   echo "local_test_content_dir: " $local_test_content_dir
   echo "container_build_dir: " $container_build_dir
   echo ""
-  echo "CONTENT_DIR: " $EXT_CONTENT_DIR if [ -z "$EXT_CONTENT_DIR" ] !!! VALUE IS EMPTY !!! fi
-  echo "BUILD_DIR: " $EXT_DEST_DIR if [ -z "$EXT_DEST_DIR" ] !!! VALUE IS EMPTY !!! fi
+  echo "CONTENT_DIR: " $(display_value $EXT_CONTENT_DIR) 
+  echo "BUILD_DIR: " $(display_value $EXT_DEST_DIR) 
   echo ""
   echo "......................................................"
   
