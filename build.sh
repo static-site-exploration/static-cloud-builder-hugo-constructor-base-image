@@ -23,3 +23,5 @@ echo "running script in directory:"; pwd
 
 echo "Listing / (container root /)"
 ls -a / # requires busybox or installed utils
+
+find /workspace
