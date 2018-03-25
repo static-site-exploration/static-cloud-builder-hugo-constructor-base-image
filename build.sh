@@ -20,29 +20,23 @@ set -e;
 # Test hugo works
 hugo --help;
 
-if [ -z "$@" ] then; 
-
-  echo "hello from build.sh, NO ARGUMENTS RECIEVED";
-
+if [ -z "$@" ]
+then
+  echo "hello from build.sh, NO ARGUMENTS RECIEVED"
 else
-
-  echo "hello from build.sh, using arguments: $@";
-
-fi;
+  echo "hello from build.sh, using arguments: $@"
+fi
 
 # Setup the variables that can be easily overridden
 content_path="${container_package_dir}/${content_dir}";
 destination_path="${container_build_dir}"
 
 # if $1 or $2 are set then override some of the default values already set in the image
-if [ -n "$1" ] then; 
-
+if [ -n "$1" ]
+then
   content_path="$1"
-
-elif [ -n "$2" ] then;  
-
+elif [ -n "$2" ]
   destination_path="$2"
-
 fi
 
 echo "Running hugo using the following flags:";
