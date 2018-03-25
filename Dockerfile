@@ -17,40 +17,29 @@ ARG content_dir
 
 # Validate hugo build run using preloaded test content at docker (image) build time
 RUN set -e \
+  \
   hugo \
   \
-  --config \
-  ${container_package_dir}/${site_dir}/${site_config_file} \
+  --config ${container_package_dir}/${site_dir}/${site_config_file} \
   \
-  --themesDir \
-  ${container_package_dir}/${themes_dir} \
+  --themesDir ${container_package_dir}/${themes_dir} \
   \
-  --theme \
-  ${theme_dir_name} \
+  --theme ${theme_dir_name} \
   \
-  --contentDir \
-  ${container_package_dir}/${content_dir} \
+  --contentDir ${container_package_dir}/${content_dir} \
   \
-  --destination \
-  ${container_build_dir}
+  --destination ${container_build_dir}
   
 ENTRYPOINT hugo \
   \
-  --config \
-  ${container_package_dir}/${site_dir}/${site_config_file} \
+  --config ${container_package_dir}/${site_dir}/${site_config_file} \
   \
-  --themesDir \
-  ${container_package_dir}/${themes_dir} \
+  --themesDir ${container_package_dir}/${themes_dir} \
   \
-  --theme \
-  ${theme_dir_name}
+  --theme ${theme_dir_name}
 
 # If cmd is not over written at docker run time, test content and local build folder will be used
 # Easy to set these to /workspace/whatever/blah using CMD override
-CMD
+CMD --contentDir ${container_package_dir}/${content_dir} \
   \
-  --contentDir \
-  ${container_package_dir}/${content_dir} \
-  \
-  --destination \
-  ${container_build_dir}
+  --destination ${container_build_dir}
