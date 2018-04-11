@@ -76,7 +76,8 @@ run_sequence() {
   echo "container_build_dir: " ${container_build_dir}
   echo ""
   echo "CONTENT_DIR: " $(display_value ${CONTENT_DIR} ) 
-  echo "BUILD_DIR: " $(display_value ${BUILD_DIR} ) 
+  echo "BUILD_DIR: " $(display_value ${BUILD_DIR} )
+  echo "BASE_URL: " " $(display_value ${BASE_URL} )
   echo ""
   echo "......................................................"
   
@@ -123,6 +124,8 @@ run_sequence() {
   
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
+    if [ ! -z ${BASE_URL} ] then; --baseURL ${BASE_URL} fi;
+    \
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
