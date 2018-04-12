@@ -73,10 +73,12 @@ use_when_set() {
   #fi
   
   # version using the config file value (dont set command line argument)
-  if [ -n ${2} ]
+  if [ -n "${2}" ]
   then
     echo "${1} ${2}"
-   fi
+  elif [ -z "${2}" ]
+    echo ""
+  fi
   
 }
 
