@@ -64,18 +64,26 @@ use_when_set() {
   #$2 : default value ( "/" ) used if $3 not set
   #$3 : argument value ( "example.org" ) 
   
-  if [ -z ${3} ]
-  then 
+  # version using a default setting
+  #if [ -z ${3} ]
+  #then 
+  #  echo "${1} ${2}"
+  #else
+  #  echo "${1} ${3}"
+  #fi
+  
+  # version using the config file value (dont set command line argument)
+  if [ -n ${2} ]
+  then
     echo "${1} ${2}"
-  else
-    echo "${1} ${3}"
-  fi
-
+   fi
+  
 }
 
 construct_base_url() {
 
-    use_when_set "--baseURL" "/" ${BASE_URL}
+    #use_when_set "--baseURL" "/" ${BASE_URL}
+    use_when_set "--baseURL" ${BASE_URL}
 }
 
 run_sequence() {
