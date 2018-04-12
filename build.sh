@@ -58,6 +58,17 @@ display_value() {
 
 }
 
+use_when_set() {
+
+  if [ -z "$2" ] 
+  then 
+    echo "${1} IS NOT SET ..."
+  else
+    ${1} ${2}
+  fi
+
+}
+
 run_sequence() {
   
   echo ""
@@ -123,6 +134,9 @@ run_sequence() {
   echo "--baseURL ${BASE_URL}";
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
+    \
+    use_when_set "--baseURL" ${BASE_URL}
+    \
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
