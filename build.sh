@@ -134,6 +134,7 @@ run_sequence() {
   
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
+    $(use_when_set "--baseURL" ${BASE_URL}) \
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
