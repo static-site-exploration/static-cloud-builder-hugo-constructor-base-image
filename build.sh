@@ -60,10 +60,8 @@ display_value() {
 
 use_when_set() {
 
-  if [ -z "$2" ] 
+  if [ ! -z "$2" ] 
   then 
-    echo "${1} IS NOT SET ..."
-  else
     ${1} ${2}
   fi
 
