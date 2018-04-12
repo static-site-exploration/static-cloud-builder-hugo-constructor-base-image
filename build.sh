@@ -60,7 +60,7 @@ display_value() {
 
 use_when_set() {
 
-  if [ ! -z "$2" ] 
+  if [ -n "$2" ]
   then 
     ${1} ${2}
   fi
