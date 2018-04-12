@@ -60,9 +60,9 @@ display_value() {
 
 use_when_set() {
 
-  if [ -n "$2" ]
+  if [ -n ${2} ]
   then 
-    ${1} ${2}
+    echo "${1} ${2}"
   fi
 
 }
