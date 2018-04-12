@@ -75,7 +75,7 @@ use_when_set() {
 
 construct_base_url() {
 
-    $(use_when_set "--baseURL" "/" ${BASE_URL})
+    use_when_set "--baseURL" "/" ${BASE_URL}
 }
 
 run_sequence() {
