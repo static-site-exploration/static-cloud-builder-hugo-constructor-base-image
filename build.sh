@@ -58,15 +58,6 @@ display_value() {
 
 }
 
-use_when_set() {
-
-  if [ ! -z "$2" ] 
-  then 
-    ${1} ${2}
-  fi
-
-}
-
 run_sequence() {
   
   echo ""
@@ -86,7 +77,6 @@ run_sequence() {
   echo ""
   echo "CONTENT_DIR: " $(display_value ${CONTENT_DIR} ) 
   echo "BUILD_DIR: " $(display_value ${BUILD_DIR} ) 
-  echo "BASE_URL: " $(display_value ${BASE_URL} ) 
   echo ""
   echo "......................................................"
   
@@ -129,12 +119,10 @@ run_sequence() {
   echo "--theme ${theme_dir_name}";
   echo "--contentDir ${CONTENT_DIR}";
   echo "--destination ${BUILD_DIR}";
-  echo $(use_when_set "--baseURL" ${BASE_URL});
+  echo ""
+  
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
-    \
-    $(use_when_set "--baseURL" ${BASE_URL})
-    \
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
