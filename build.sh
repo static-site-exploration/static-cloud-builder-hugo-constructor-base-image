@@ -77,6 +77,7 @@ use_when_set() {
   then
     echo "${1} ${2}"
   elif [ -z "${2}" ]
+  then
     echo ""
   fi
   
