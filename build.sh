@@ -129,7 +129,7 @@ run_sequence() {
   echo "--theme ${theme_dir_name}";
   echo "--contentDir ${CONTENT_DIR}";
   echo "--destination ${BUILD_DIR}";
-  echo "--baseURL ${BASE_URL}";
+  echo $(use_when_set "--baseURL" ${BASE_URL});
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
     \
