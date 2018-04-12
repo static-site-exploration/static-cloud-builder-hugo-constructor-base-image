@@ -59,14 +59,23 @@ display_value() {
 }
 
 use_when_set() {
-
-  if [ -n ${3} ]
+  
+  #$1 : base command ( "--baseURL" )
+  #$2 : default value ( "/" ) used if $3 not set
+  #$3 : argument value ( "example.org" ) 
+  
+  if [ -z ${3} ]
   then 
-    echo "${1} ${3}"
-  else
     echo "${1} ${2}"
+  else
+    echo "${1} ${3}"
   fi
 
+}
+
+construct_base_url() {
+
+    $(use_when_set "--baseURL" "/" ${BASE_URL})
 }
 
 run_sequence() {
@@ -131,12 +140,12 @@ run_sequence() {
   echo "--theme ${theme_dir_name}";
   echo "--contentDir ${CONTENT_DIR}";
   echo "--destination ${BUILD_DIR}";
-  echo "$(use_when_set "--baseURL" ${BASE_URL})";
+  echo construct_base_url;  
   echo ""
   
   hugo \
     --config ${container_package_dir}/${site_dir}/${site_config_file} \
-    $(use_when_set "--baseURL" "/" ${BASE_URL}) \
+    construct_base_url \
     --themesDir ${container_package_dir}/${themes_dir} \
     --theme ${theme_dir_name} \
     \
