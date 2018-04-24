@@ -119,14 +119,18 @@ steps:
   #
   - '.'
 
-# TODO: ADD TEST THE BUILT CONTAINER (try to not use latest - no way to know if the latest one is being tested)
-
-# WAITFOR TEST TO COMPLETE
+# Push to GCR: gcloud docker -- push gcr.io/my-project/my-image:latest
+- name: 'gcr.io/cloud-builders/docker'
+  id: PUSH
+  args: ['push', 'gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}:latest']
+  
+# WAITFOR PUSH TO COMPLETE
 
 # TRIGGER THE API BROKER 
-#- name: 'gcr.io/static-cloud-builders/trigger-api-broker'
-#  args: ['$_SITE_TRIGGER_ID', '$_SITE_TRIGGER_PROJECT']
-
+- name: 'gcr.io/static-cloud-builders/trigger-api-broker'
+  args: ['$_SITE_TRIGGER_ID', '$_SITE_TRIGGER_PROJECT']
+  waitFor:
+  - PUSH
 
 # Push the image
-images: ['gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}']
+#images: ['gcr.io/${PROJECT_ID}/hugo-preloaded-implimentation-${_DOMAIN_SITE}']
